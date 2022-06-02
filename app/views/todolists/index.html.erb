@@ -1,0 +1,22 @@
+<h1> Showing all works in this page </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th> Pending Work </th>
+    </tr>
+  </thead>
+  <% @works.each do |work| %>
+      <tbody>
+            <td> <%= work.work%> </td>
+            <td>
+              <%= link_to "Show", todolist_path(work)%>
+              <%= link_to "Edit", edit_todolist_path(work)%>
+            </td>
+            <td><%= link_to "Done", work, method: :delete, data: {confirm: "Are you sure?"} %></td>
+      </tbody>
+  <% end%>
+  </tbody>
+</table>
+
+<%= link_to "Create", new_todolist_path%>
