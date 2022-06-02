@@ -1,6 +1,8 @@
 <div id="background-content">
   <h1 class= "text-center"> Showing all topics in this forum </h1>
-  <%= link_to "Create Forum", new_forum_path, class: "create-forum btn btn-info" %>
+  <% if logged_in? %>
+    <%= link_to "Create Forum", new_forum_path, class: "create-forum btn btn-info" %>
+<% end %>
 
   <% @forums.each do |forum| %>
     <div class="row justify-content-md-center ">
@@ -13,7 +15,7 @@
             <h5 class="card-title text-success font-weight-bold text-capitalize"><%= forum.topic%></h5>
             <p class="card-text"><%= truncate(forum.description, length:100)%></p>
             <%= link_to "Show", forum_path(forum), class:"btn btn-success font-weight-bold"%>
-            <% if forum.user == current_user || current_user.admin? %>
+            <% if forum.user == current_user || (logged_in? && current_user.admin?) %>
                   <%= link_to "Edit", edit_forum_path(forum), class:"btn btn-primary font-weight-bold"%>
                   <%= link_to "Delete", forum_path(forum), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger font-weight-bold"%>
             <% end %>
