@@ -1,0 +1,29 @@
+<div id="background-content">
+  <h1 class= "text-center"> Showing all topics in this forum </h1>
+  <%= link_to "Create Forum", new_forum_path, class: "create-forum btn btn-info" %>
+
+  <% @forums.each do |forum| %>
+    <div class="row justify-content-md-center ">
+      <div class ="col-8 mt-4">
+        <div class="card text-center shadow mb-5 bg-body rounded">
+          <div class="card-header font-italic font-weight-bold bg-success p-2 text-dark bg-opacity-75">
+            Created by : <%= forum.user.username%>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title text-success font-weight-bold text-capitalize"><%= forum.topic%></h5>
+            <p class="card-text"><%= truncate(forum.description, length:100)%></p>
+            <%= link_to "Show", forum_path(forum), class:"btn btn-success font-weight-bold"%>
+            <% if forum.user == current_user || current_user.admin? %>
+                  <%= link_to "Edit", edit_forum_path(forum), class:"btn btn-primary font-weight-bold"%>
+                  <%= link_to "Delete", forum_path(forum), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger font-weight-bold"%>
+            <% end %>
+          </div>
+          <div class="card-footer bg-success p-2 ">
+            Created <%= time_ago_in_words(forum.created_at) %> ago,
+            edited <%= time_ago_in_words(forum.updated_at) %> ago
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end%>
+

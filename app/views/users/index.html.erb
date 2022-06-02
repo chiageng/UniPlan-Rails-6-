@@ -1,22 +1,30 @@
-<h1> Here is users in backend </h1>
+<h1 class="text-center"> Here is users in backend </h1>
 
-<table>
-  <thead>
-    <tr>
-      <th> Users exists </th>
-    </tr>
-  </thead>
-  <% @users.each do |user| %>
-    <% if logged_in? && current_user.admin? %>
-      <tbody>
-            <td> <%= user.username%> </td>
-            <td> <%= user.email%> </td>
-            <td>
-              <%= link_to "Show", user_path(user)%>
-              <%= link_to "Edit", edit_user_path(user)%>
-            </td>
-            <td> <%= link_to "Destroy", user, method: :delete, data: {confirm: "Are you sure?"} %> </td>
-      </tbody>
+<div class= "container">
+  <table class="table">
+    <thead class="thead">
+      <tr class="table-info font-weight-bold">
+        <th scope="col">#</th>
+        <th scope="col">User</th>
+        <th scope="col">Email</th>
+        <th scope="col">Command</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+      <% if logged_in? && current_user.admin? %>
+        <tr>
+          <th scope="row">1</th>
+          <td><%= user.username%></td>
+          <td><%= user.email%></td>
+          <td>
+            <%= link_to "Show", user_path(user)%>
+            <%= link_to "Edit", edit_user_path(user)%>
+            <%= link_to "Destroy", user, method: :delete, data: {confirm: "Are you sure?"} %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
-  <% end%>
-</table>
+    </tbody>
+  </table>
+</div>

@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_02_032305) do
+ActiveRecord::Schema.define(version: 2022_06_02_085510) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "user_id"
+    t.integer "forum_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["forum_id"], name: "index_comments_on_forum_id"
+  end
+
+  create_table "forums", force: :cascade do |t|
+    t.string "topic"
+    t.text "description"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "todolists", force: :cascade do |t|
     t.string "work"
@@ -28,4 +45,5 @@ ActiveRecord::Schema.define(version: 2022_06_02_032305) do
     t.boolean "admin", default: false
   end
 
+  add_foreign_key "comments", "forums"
 end
