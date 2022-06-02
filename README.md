@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version : v2.7.6
 
-Things you may want to cover:
+* Rails version : v6.1.6
 
-* Ruby version
+* Yarn version : v1.22.17
 
-* System dependencies
+* Node version : v16.13.1
 
-* Configuration
+* Npm version : v8.1.2
 
-* Database creation
+* Bootstrap version : v4.6.1
 
-* Database initialization
+* Test environment database : sqlite3
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Development environment database : postgresql (pg v1.0)
