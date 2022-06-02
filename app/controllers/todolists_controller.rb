@@ -1,7 +1,7 @@
 class TodolistsController < ApplicationController
     before_action :todolist_find, only: [:destroy, :update, :edit, :show]
-    # before_action :require_user, only: [:index, :new, :create, :destroy, :edit, :update]
-    # before_action :require_same_user, only: [:edit, :update, :destroy]
+    before_action :require_user, only: [:index, :new, :create, :destroy, :edit, :update]
+    before_action :require_same_user, only: [:edit, :update, :destroy]
     
     def index
         @works = Todolist.all 
@@ -19,7 +19,7 @@ class TodolistsController < ApplicationController
 
     def create
         @work = Todolist.new(todolist_params)
-        # @work.user = current_user
+        @work.user = current_user
         if @work.save 
             flash[:success] = "Work was created successfully"
             redirect_to @work
@@ -55,7 +55,7 @@ class TodolistsController < ApplicationController
     end 
 
     def require_same_user
-        if current_user != @work.user 
+        if current_user != @work.user && !current_user.admin?
             flash[:danger] = "You cannot delete some other people work"
             redirect_to todolists_path
         end 

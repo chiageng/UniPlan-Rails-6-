@@ -7,6 +7,7 @@
     </tr>
   </thead>
   <% @works.each do |work| %>
+    <% if work.user == current_user  || current_user.admin? %>
       <tbody>
             <td> <%= work.work%> </td>
             <td>
@@ -14,7 +15,9 @@
               <%= link_to "Edit", edit_todolist_path(work)%>
             </td>
             <td><%= link_to "Done", work, method: :delete, data: {confirm: "Are you sure?"} %></td>
+            <td> Created by : <%= work.user.username %> </td>
       </tbody>
+    <% end %>
   <% end%>
   </tbody>
 </table>

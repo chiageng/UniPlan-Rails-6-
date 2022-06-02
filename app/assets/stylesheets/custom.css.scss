@@ -1,5 +1,78 @@
 @import "bootstrap/dist/css/bootstrap";
 
 .navbar {
-  background-color: rgb(1, 233, 125) !important;
+  background-color: rgb(0, 0, 0) !important;
+  height: 70px;
+}
+
+.nav-item {
+  color: white !important;
+  margin-left: 10px;
+  font-size: large;
+  font-weight: bold;
+}
+
+#logo {
+  float: left;
+  font-size: 1.7em;
+  color: white;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-family: "Times New Roman", Times, serif;
+  text-decoration: none;
+}
+
+#logout {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}
+
+#login {
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+#signup {
+  background-color: green;
+  color: white;
+  font-weight: bold;
+}
+
+.image {
+  height: 550px;
+  width: 650px;
+  background-image: asset-url("jumbo4.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  left: 20px;
+}
+
+.right {
+  position: absolute;
+  right: 50px;
+  width: 700px;
+  padding: 15px;
+}
+
+#title1 {
+  font-size: 65px;
+  text-shadow: 5px 5px 5px rgb(4, 0, 255);
+}
+
+#text1 {
+  font-size: 35px;
+  text-shadow: 2px 2px 5px rgba(109, 93, 93, 0.543);
+}
+
+#text2 {
+  font-style: italic;
+}
+
+.right-bottom {
+  float: right;
+  padding-right: 250px;
 }
