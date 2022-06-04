@@ -1,4 +1,13 @@
 <h1> Showing all works in this page </h1>
+<div>
+    <%= link_to "All", timetables_path(category: "All")%>
+    <%= link_to "Study", timetables_path(category: "Study")%>
+    <%= link_to "Work", timetables_path(category: "Work")%>
+    <%= link_to "Social", timetables_path(category: "Social")%>
+    <%= link_to "To-do", timetables_path(category: "To-do")%>
+    <%= link_to "Other", timetables_path(category: "Other")%>
+</div>
+
 
 <table>
   <thead>
@@ -7,6 +16,7 @@
       <th> Work </th>
       <th> Start Time </th>
       <th> End Time </th>
+      <th> Category </th>
     </tr>
   </thead>
   <% @works.each do |work| %>
@@ -16,6 +26,7 @@
             <td> <%= work.work%> </td>
             <td> <%= work.starttime%> </td>
             <td> <%= work.endtime.to_s[10..15]%> </td>
+            <td> <%= work.category%> </td>
             <td>
               <%= link_to "Show", timetable_path(work)%>
               <%= link_to "Edit", edit_timetable_path(work)%>

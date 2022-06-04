@@ -4,7 +4,11 @@ class TimetablesController < ApplicationController
     before_action :require_same_user, only: [:edit, :update, :destroy]
     
     def index
-        @works = Timetable.all 
+        if (params.has_key?(:category)) && params[:category] != "All"
+            @works = Timetable.where(category: params[:category])
+        else 
+            @works = Timetable.all 
+        end 
     end 
 
     def show 
@@ -44,7 +48,7 @@ class TimetablesController < ApplicationController
 
     private 
     def timetable_params 
-        params.require(:timetable).permit(:day, :work, :starttime, :endtime)
+        params.require(:timetable).permit(:day, :work, :starttime, :endtime, :category)
     end 
 
     def timetable_find 
