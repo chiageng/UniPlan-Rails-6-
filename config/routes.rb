@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   resources :forums do
     resources :comments
   end
+
+  resources :timetables 
 end

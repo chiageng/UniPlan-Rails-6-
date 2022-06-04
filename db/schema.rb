@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_02_085510) do
+ActiveRecord::Schema.define(version: 2022_06_04_023335) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(version: 2022_06_02_085510) do
   create_table "forums", force: :cascade do |t|
     t.string "topic"
     t.text "description"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "timetables", force: :cascade do |t|
+    t.string "day"
+    t.string "work"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

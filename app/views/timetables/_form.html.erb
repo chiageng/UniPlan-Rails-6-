@@ -1,0 +1,26 @@
+<%= form_with model: work do |form|%>
+    <div>
+        <%= form.select :day,
+        [["Monday", "Mon"], ["Tuesday","Tue"], ["Wednesday", "Wed"], ["Thursday", "Thurs"] , ["Friday", "Fri"], ["Saturday", "Sat"], ["Sunday", "Sun"]],
+        selected: "Mon" %><br>
+        <% if work.errors.any? %>
+            <% work.errors.full_messages_for(:day).each do |message|%>
+                <div><%= message %></div>
+            <% end %> 
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.label :work%><br>
+        <%= form.text_field :work%>
+        <% if work.errors.any? %>
+            <% work.errors.full_messages_for(:work).each do |message|%>
+                <div><%= message %></div>
+            <% end %> 
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.submit%>
+    </div>
+<% end %>

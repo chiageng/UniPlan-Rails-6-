@@ -1,0 +1,27 @@
+<h1> Showing all works in this page </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th> Day </th>
+      <th> Work </th>
+    </tr>
+  </thead>
+  <% @works.each do |work| %>
+    <% if work.user == current_user  || current_user.admin? %>
+      <tbody>
+            <td> <%= work.day%> </td>
+            <td> <%= work.work%> </td>
+            <td>
+              <%= link_to "Show", timetable_path(work)%>
+              <%= link_to "Edit", edit_timetable_path(work)%>
+            </td>
+            <td><%= link_to "Done", work, method: :delete, data: {confirm: "Are you sure?"} %></td>
+            <td> Created by : <%= work.user.username %> </td>
+      </tbody>
+    <% end %>
+  <% end%>
+  </tbody>
+</table>
+
+<%= link_to "Create", new_timetable_path%>
