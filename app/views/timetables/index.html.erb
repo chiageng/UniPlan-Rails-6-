@@ -5,6 +5,8 @@
     <tr>
       <th> Day </th>
       <th> Work </th>
+      <th> Start Time </th>
+      <th> End Time </th>
     </tr>
   </thead>
   <% @works.each do |work| %>
@@ -12,6 +14,8 @@
       <tbody>
             <td> <%= work.day%> </td>
             <td> <%= work.work%> </td>
+            <td> <%= work.starttime%> </td>
+            <td> <%= work.endtime.to_s[10..15]%> </td>
             <td>
               <%= link_to "Show", timetable_path(work)%>
               <%= link_to "Edit", edit_timetable_path(work)%>

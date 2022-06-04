@@ -44,7 +44,7 @@ class TimetablesController < ApplicationController
 
     private 
     def timetable_params 
-        params.require(:timetable).permit(:day, :work)
+        params.require(:timetable).permit(:day, :work, :starttime, :endtime)
     end 
 
     def timetable_find 

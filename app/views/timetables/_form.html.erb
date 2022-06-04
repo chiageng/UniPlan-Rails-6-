@@ -1,5 +1,6 @@
 <%= form_with model: work do |form|%>
     <div>
+        <%= form.label :Day%><br>
         <%= form.select :day,
         [["Monday", "Mon"], ["Tuesday","Tue"], ["Wednesday", "Wed"], ["Thursday", "Thurs"] , ["Friday", "Fri"], ["Saturday", "Sat"], ["Sunday", "Sun"]],
         selected: "Mon" %><br>
@@ -18,6 +19,16 @@
                 <div><%= message %></div>
             <% end %> 
         <% end %>
+    </div>
+
+    <div>
+        <%= form.label :start%><br>
+        <%= form.time_select :starttime %>
+    </div>
+
+    <div>
+        <%= form.label :end%><br>
+        <%= form.time_select :endtime, class: 'datetime' %>
     </div>
 
     <div>
