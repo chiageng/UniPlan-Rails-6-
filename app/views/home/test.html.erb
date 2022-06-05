@@ -1,0 +1,19 @@
+
+<div class="container mt-3">
+  <div class="image">
+  </div>
+  <div class="right">
+    <h1 class="home-text bg-primary text-wrap font-weight-bold text-center", id= "title1">Welcome to UniPlan</h1>
+    <p class="lead text-center font-weight-bold", id="text1">This is a university study app, a powerful and user-friendly app for you to do your timetable, to-do-list, and discuss your works with your fellow friends</p>
+    <hr class="my-4">
+    <p class="text-center font-weight-bold text-black-50" , id= "text2">It uses Ruby on Rails version 6.1 as backend and bootstrap v4.6 as frontend.</p>
+    <div class="right-bottom">
+        <% if logged_in? %>
+            <%= link_to "Go to forum page", forums_path, class:"btn btn-outline-primary my-2 my-sm-0 w-15 p-3", id: "login" %>
+        <% else %>
+            <%= link_to "Login", login_path, class:"btn btn-outline-primary my-2 my-sm-0 w-15 p-3", id: "login" %>
+            <%= link_to "Sign Up", signup_path, class:"btn btn-outline-success my-2 my-sm-0 w-15 p-3", id: "signup" %>
+        <% end %>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,6 @@
 
 .navbar {
   background-color: rgb(0, 0, 0) !important;
-  height: 70px;
 }
 
 .nav-item {
@@ -42,44 +41,46 @@
 }
 
 .image {
-  position: absolute;
-  top: 80px;
-  left: 20px;
-  height: 550px;
-  width: 650px;
   background-image: asset-url("jumbo4.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-}
+  height: 300px;
+  width: 80%;
 
-.right {
-  position: absolute;
-  top: 80px;
-  left: 700px;
-  width: 700px;
-  padding: 15px;
+  @media (min-width: 768px) {
+    height: 400px;
+    width: 768px;
+  }
 }
 
 #title1 {
-  font-size: 65px;
+  font-size: 25px;
   text-shadow: 5px 5px 5px rgb(4, 0, 255);
+  width: 80%;
+  @media (min-width: 768px) {
+    font-size: 60px;
+    width: 768px;
+  }
 }
 
 #text1 {
-  font-size: 35px;
+  font-size: 20px;
   text-shadow: 2px 2px 5px rgba(109, 93, 93, 0.543);
+  width: 90%;
+  @media (min-width: 768px) {
+    font-size: 30px;
+  }
 }
 
 #text2 {
   font-style: italic;
 }
 
-.right-bottom {
-  float: right;
-  padding-right: 250px;
+.position-center {
+  left: 40%;
+  position: relative;
 }
-
 .flash-message {
   z-index: 1;
 }
