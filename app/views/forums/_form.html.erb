@@ -1,25 +1,22 @@
 <%= form_with model: forum do |form|%>
-    <div>
-        <%= form.label :topic%><br>
-        <%= form.text_field :topic%>
-        <% if forum.errors.any? %>
-            <% forum.errors.full_messages_for(:topic).each do |message|%>
-                <div><%= message %></div>
-            <% end %> 
-        <% end %>
-    </div>
-
-    <div>
-        <%= form.label :description%><br>
-        <%= form.text_field :description%>
-        <% if forum.errors.any? %>
-            <% forum.errors.full_messages_for(:description).each do |message|%>
-                <div><%= message %></div>
-            <% end %> 
-        <% end %>
-    </div>
-
-    <div>
-        <%= form.submit%>
+    <div class="registration-form container-form">
+        <form>
+            <div class="form-icon">
+                <span><i class="icon icon-user"></i></span>
+            </div>
+            <div class="form-group">
+                <%= form.text_field :topic, class:"form-control item", id:"username", placeholder:"Forum Topic"%>
+            </div>
+            <div class="form-group">
+                <%= form.text_field :description, class:"form-control item", id:"username", placeholder:"Forum Description"%>
+            </div>
+            <div class="form-group">
+                <%= form.submit "Create Forum", class:"btn btn-block create-account"%>
+                <button type="button" class="btn btn-block create-account "><%= link_to "Cancel", forums_path, class:"text-white" %></button>
+            </div>
+        </form>
     </div>
 <% end %>
+        
+
+
