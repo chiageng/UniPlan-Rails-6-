@@ -14,7 +14,8 @@ class UsersController < ApplicationController
             flash[:primary] = "Registration successful. Login to your account now!"
             redirect_to login_path
         else 
-            render "new"
+            flash[:danger] = @user.errors.full_messages
+            redirect_to signup_path
         end 
     end 
 

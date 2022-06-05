@@ -1,31 +1,87 @@
-<div id="background-content">
-  <h1 class= "text-center"> Showing all topics in this forum </h1>
-  <% if logged_in? %>
-    <%= link_to "Create Forum", new_forum_path, class: "create-forum btn btn-info" %>
-<% end %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+<div class="container">
+<div class="main-body p-0">
+    <div class="inner-wrapper">
+        <!-- Inner sidebar -->
+        <div class="inner-sidebar">
+            <!-- Inner sidebar header -->
+            <div class="inner-sidebar-header justify-content-center">
+                <%= link_to "Create New Forum", new_forum_path, class: "btn btn-primary has-icon btn-block"%>
+            </div>
+            <!-- /Inner sidebar header -->
 
-  <% @forums.each do |forum| %>
-    <div class="row justify-content-md-center ">
-      <div class ="col-8 mt-4">
-        <div class="card text-center shadow mb-5 bg-body rounded">
-          <div class="card-header font-italic font-weight-bold bg-success p-2 text-dark bg-opacity-75">
-            Created by : <%= forum.user.username%>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title text-success font-weight-bold text-capitalize"><%= forum.topic%></h5>
-            <p class="card-text"><%= truncate(forum.description, length:100)%></p>
-            <%= link_to "Show", forum_path(forum), class:"btn btn-success font-weight-bold"%>
-            <% if forum.user == current_user || (logged_in? && current_user.admin?) %>
-                  <%= link_to "Edit", edit_forum_path(forum), class:"btn btn-primary font-weight-bold"%>
-                  <%= link_to "Delete", forum_path(forum), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger font-weight-bold"%>
-            <% end %>
-          </div>
-          <div class="card-footer bg-success p-2 ">
-            Created <%= time_ago_in_words(forum.created_at) %> ago,
-            edited <%= time_ago_in_words(forum.updated_at) %> ago
-          </div>
+            <!-- Inner sidebar body -->
+            <div class="inner-sidebar-body p-0">
+                <div class="p-3 h-100" data-simplebar="init">
+                    <div class="simplebar-wrapper" style="margin: -16px;">
+                        <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div>
+                        <div class="simplebar-mask">
+                            <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
+                                    <div class="simplebar-content" style="padding: 16px;">
+                                        <nav class="nav nav-pills nav-gap-y-1 flex-column">
+                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">All Threads</a>
+                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Popular this week</a>
+                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Popular all time</a>
+                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Solved</a>
+                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Unsolved</a>
+                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">No replies yet</a>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="simplebar-placeholder" style="width: 234px; height: 292px;"></div>
+                    </div>
+                    <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div>
+                    <div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 151px; display: block; transform: translate3d(0px, 0px, 0px);"></div></div>
+                </div>
+            </div>
+            <!-- /Inner sidebar body -->
         </div>
-      </div>
-    </div>
-  <% end%>
+        <!-- /Inner sidebar -->
 
+        <!-- Inner main -->
+        <div class="inner-main">
+            <!-- Inner main header -->
+            <div class="inner-main-header">
+                <!-- Inner sidebar header -->
+              <div class="inner-sidebar-header justify-content-center", id= "forum-inner">
+                  <%= link_to "Create New Forum", new_forum_path, class: "btn btn-primary has-icon btn-block"%>
+              </div>
+            </div>
+            <!-- /Inner main header -->
+
+            <!-- Inner main body -->
+
+            <!-- Forum List -->
+            <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
+              <% @forums.each do |forum| %>
+                <div class="card mb-2">
+                    <div class="card-body p-2 p-sm-3">
+                        <div class="media forum-item">
+                            <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
+                            <div class="media-body">
+                                <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"><%= forum.topic%></a></h6>
+                                <p class="text-secondary">
+                                    <%= truncate(forum.description, length:100)%>
+                                </p>
+                                <span class="text-secondary font-weight-bold">Created <%= time_ago_in_words(forum.created_at) %> ago,
+                                edited <%= time_ago_in_words(forum.updated_at) %> ago</span></p>
+                            </div>
+                            <div class="align-self-center">
+                                <%= link_to "Show", forum_path(forum), class:"btn btn-success font-weight-bold"%>
+                                <% if forum.user == current_user || (logged_in? && current_user.admin?) %>
+                                  <%= link_to "Edit", edit_forum_path(forum), class:"btn btn-primary font-weight-bold", id:"phone-hidden"%>
+                                  <%= link_to "Delete", forum_path(forum), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger font-weight-bold", id:"phone-hidden"%>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

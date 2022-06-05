@@ -1,44 +1,51 @@
 <div class="form-design">
-        <div class="container-form">
-            <div class="d-flex justify-content-center h-100">
-                <div class="card-form">
-                    <div class="card-header text-center mt-4">
-                        <h3>Sign Up</h3>
-                        <div class="d-flex justify-content-end social_icon">
-                            <span><i class="fab fa-facebook-square"></i></span>
-                            <span><i class="fab fa-google-plus-square"></i></span>
-                            <span><i class="fab fa-twitter-square"></i></span>
+    <div class="container-form">
+        <div class="d-flex justify-content-center h-100">
+            <div>
+                <% if @user.errors.any? %>
+                    <% @user.errors.full_messages_for(:username).each do |message|%>
+                        <div><%= message %></div>
+                    <% end %> 
+                <% end %>
+            </div>
+            <div class="card-form">
+                <div class="card-header text-center mt-4">
+                    <h3>Sign Up</h3>
+                    <div class="d-flex justify-content-end social_icon">
+                        <span><i class="fab fa-facebook-square"></i></span>
+                        <span><i class="fab fa-google-plus-square"></i></span>
+                        <span><i class="fab fa-twitter-square"></i></span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <%= form.text_field :username, class: "form-control", placeholder:"username"%>
+                            </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <%= form.email_field :email, class: "form-control", placeholder: "email@example.com"%>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <form>
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
-                                <%= form.text_field :username, class: "form-control", placeholder:"username"%>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
                             </div>
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
-                                <%= form.email_field :email, class: "form-control", placeholder: "email@example.com"%>
+                            <%= form.password_field :password, class:"form-control", placeholder:"password"%>
                             </div>
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                </div>
-                                <%= form.password_field :password, class:"form-control", placeholder:"password"%>
-                            </div>
-                            <div class="row align-items-center remember">
-                                <input type="checkbox">Remember Me
-                            </div>
-                            <div class="form-group">
-                                <%= form.submit "Sign Up", class:"btn float-right login_btn"  %>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="row align-items-center remember">
+                            <input type="checkbox">Remember Me
+                        </div>
+                        <div class="form-group">
+                            <%= form.submit "Sign Up", class:"btn float-right login_btn"  %>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 </div>
