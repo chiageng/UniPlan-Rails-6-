@@ -17,7 +17,7 @@ class ForumsController < ApplicationController
             flash[:success] = "A new forum is created successfully"
             redirect_to @forum
         else 
-            flash[:alert] = "The creation of forum is failed"
+            flash[:danger] = "The creation of forum is failed"
             render "new"
         end 
     end 
@@ -33,14 +33,14 @@ class ForumsController < ApplicationController
             flash[:success] = "Your forum has been updated successfully"
             redirect_to @forum 
         else 
-            flash[:alert] = "Your forum edited failed"
+            flash[:danger] = "Your forum edited failed"
             render "edit"
         end 
     end 
 
     def destroy 
         @forum.destroy 
-        flash[:alert] = "Your forum has been deleted successfully"
+        flash[:danger] = "Your forum has been deleted successfully"
         redirect_to forums_path
     end 
 
