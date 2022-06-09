@@ -120,7 +120,7 @@
 
 .registration-form .todolist-icon {
   text-align: center;
-  background-image: asset-url("forum-icon.png");
+  background-image: asset-url("todolist-icon2.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -135,4 +135,8 @@
     width: 200px;
     height: 200px;
   }
+}
+
+.todolist-card {
+  background-color: white;
 }

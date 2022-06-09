@@ -127,3 +127,26 @@
     width: 100%;
   }
 }
+
+.registration-form .timetable-icon {
+  text-align: center;
+  background-image: asset-url("timetable-icon.webp");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  color: white;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  margin-bottom: 50px;
+  line-height: 100px;
+  @media (min-width: 768px) {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.timetable-card {
+  background-color: white;
+}

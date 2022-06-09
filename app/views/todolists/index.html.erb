@@ -9,7 +9,7 @@
             <div class="col-lg-4 ">
                 <div class="category mb-30">
                         <div class="list-title">
-                            <h4 class= "font-weight-bold text-center"> Pending Work </h1>
+                            <h4 class= "font-weight-bold text-center"> To begin </h1>
                         </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
             <% @works1.each do |work| %>
                 <% if work.user == current_user  || current_user.admin? %>
                     <div class="col-lg-4 ">
-                        <div class="category mb-30">
+                        <div class="category mb-30 todolist-card">
                             <div class="job">
                             <% if work.priority == "High"%>
                                 <span class="colors5 mb-4">High</span>
@@ -62,7 +62,7 @@
             <% @works2.each do |work| %>
                 <% if work.user == current_user  || current_user.admin? %>
                     <div class="col-lg-4 ">
-                        <div class="category mb-30">
+                        <div class="category mb-30 todolist-card">
                             <div class="job">
                             <% if work.priority == "High"%>
                                 <span class="colors5 mb-4">High</span>
@@ -106,7 +106,7 @@
             <% @works3.each do |work| %>
                 <% if work.user == current_user  || current_user.admin? %>
                     <div class="col-lg-4 ">
-                        <div class="category mb-30">
+                        <div class="category mb-30 todolist-card">
                             <div class="job">
                             <% if work.priority == "High"%>
                                 <span class="colors5 mb-4">High</span>

@@ -1,0 +1,37 @@
+<%= form_with model: work do |form|%>
+    <div>
+        <%= form.label :Day%><br>
+        <%= form.select :day,
+        [["Monday", "Mon"], ["Tuesday","Tue"], ["Wednesday", "Wed"], ["Thursday", "Thurs"] , ["Friday", "Fri"], ["Saturday", "Sat"], ["Sunday", "Sun"]] %><br>
+    </div>
+
+    <div>
+        <%= form.label :Category%><br>
+        <%= form.select :category,
+        [["Study", "Study"], ["Work","Work"], ["Social", "Social"], ["To-do", "To-do"] , ["Other", "Other"]]%><br>
+    </div>
+
+    <div>
+        <%= form.label :work%><br>
+        <%= form.text_field :work%>
+        <% if work.errors.any? %>
+            <% work.errors.full_messages_for(:work).each do |message|%>
+                <div><%= message %></div>
+            <% end %> 
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.label :start%><br>
+        <%= form.time_select :starttime %>
+    </div>
+
+    <div>
+        <%= form.label :end%><br>
+        <%= form.time_select :endtime, class: 'datetime' %>
+    </div>
+
+    <div>
+        <%= form.submit%>
+    </div>
+<% end %>
