@@ -1,42 +1,417 @@
-<h1> Showing all works in this page </h1>
-<div>
-    <%= link_to "All", timetables_path(category: "All")%>
-    <%= link_to "Study", timetables_path(category: "Study")%>
-    <%= link_to "Work", timetables_path(category: "Work")%>
-    <%= link_to "Social", timetables_path(category: "Social")%>
-    <%= link_to "To-do", timetables_path(category: "To-do")%>
-    <%= link_to "Other", timetables_path(category: "Other")%>
+<div class="container-timetable">
+  <div class="inner-main-header", id="timetable-header1">
+                <!-- Inner sidebar header -->
+              <div class="inner-sidebar-header justify-content-center">
+                <%= link_to "Create New Work", new_timetable_path, class:"navbar-brand font-weight-bold font-black" %>
+        </div>
+    </div>
+    <div class="inner-main-header timetable-header2",id="timetable-header2">
+                <!-- Inner sidebar header -->
+      <div class="inner-sidebar-header justify-content-center">
+        <%= link_to "All", timetables_path(category: "All"), class:"navbar-brand font-weight-bold font-black"%>
+        <%= link_to "Study", timetables_path(category: "Study"), class:"navbar-brand font-weight-bold font-black"%>
+        <%= link_to "Work", timetables_path(category: "Work"), class:"navbar-brand font-weight-bold font-black"%>
+        <%= link_to "Social", timetables_path(category: "Social"), class:"navbar-brand font-weight-bold font-black"%>
+        <%= link_to "To-do", timetables_path(category: "To-do"), class:"navbar-brand font-weight-bold font-black"%>
+        <%= link_to "Other", timetables_path(category: "Other"), class:"navbar-brand font-weight-bold font-black"%>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered text-center bg-light-gray">
+          <thead>
+            <tr class="bg-light-gray">
+              <th class="text-uppercase">Time</th>
+              <th class="text-uppercase">Monday</th>
+              <th class="text-uppercase">Tuesday</th>
+              <th class="text-uppercase">Wednesday</th>
+              <th class="text-uppercase">Thursday</th>
+              <th class="text-uppercase">Friday</th>
+              <th class="text-uppercase">Saturday</th>
+              <th class="text-uppercase">Sunday</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="align-middle"> 8-10am</td>
+              <td>
+                <% @works.each do |work| %>
+                  <% if work.day == "Mon" && compare_time(work,Time.utc(2000,1,1,8,0,0), Time.utc(2000,1,1,10,0,0)) %>
+                    <%= render 'timetable_item', work: work%>
+                  <% end %>
+                <% end %>
+              </td>
+              <td>
+              <% @works.each do |work| %>
+                <% if work.day == "Tue" && compare_time(work,Time.utc(2000,1,1,8,0,0), Time.utc(2000,1,1,10,0,0)) %>
+                  <%= render 'timetable_item', work: work%>
+                <% end %>
+              <% end %>
+              </td>
+
+              <td>
+                <% @works.each do |work| %>
+                  <% if work.day == "Wed" && compare_time(work,Time.utc(2000,1,1,8,0,0), Time.utc(2000,1,1,10,0,0)) %>
+                    <%= render 'timetable_item', work: work%>
+                  <% end %>
+                <% end %>
+                </td>
+                <td>
+                  <% @works.each do |work| %>
+                    <% if work.day == "Thurs" && compare_time(work,Time.utc(2000,1,1,8,0,0), Time.utc(2000,1,1,10,0,0)) %>
+                      <%= render 'timetable_item', work: work%>
+                    <% end %>
+                  <% end %>
+                  </td>
+                  <td>
+                    <% @works.each do |work| %>
+                      <% if work.day == "Fri" && compare_time(work,Time.utc(2000,1,1,8,0,0), Time.utc(2000,1,1,10,0,0)) %>
+                      <%= render 'timetable_item', work: work%>
+                      <% end %>
+                     <% end %>
+                  </td>
+                  <td>
+                    <% @works.each do |work| %>
+                      <% if work.day == "Sat" && compare_time(work,Time.utc(2000,1,1,8,0,0), Time.utc(2000,1,1,10,0,0)) %>
+                        <%= render 'timetable_item', work: work%>
+                      <% end %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <% @works.each do |work| %>
+                      <% if work.day == "Sun" && compare_time(work,Time.utc(2000,1,1,8,0,0), Time.utc(2000,1,1,10,0,0)) %>
+                        <%= render 'timetable_item', work: work%>
+                      <% end %>
+                    <% end %>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="align-middle"> 10-12pm</td>
+                    <td>
+                      <% @works.each do |work| %>
+                        <% if work.day == "Mon" && compare_time(work,Time.utc(2000,1,1,10,0,0), Time.utc(2000,1,1,12,0,0)) %>
+                          <%= render 'timetable_item', work: work%>
+                        <% end %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <% @works.each do |work| %>
+                        <% if work.day == "Tue" && compare_time(work,Time.utc(2000,1,1,10,0,0), Time.utc(2000,1,1,12,0,0)) %>
+                          <%= render 'timetable_item', work: work%>
+                        <% end %>
+                      <% end %>
+                    </td>
+
+                    <td>
+                      <% @works.each do |work| %>
+                        <% if work.day == "Wed" && compare_time(work,Time.utc(2000,1,1,10,0,0), Time.utc(2000,1,1,12,0,0)) %>
+                          <%= render 'timetable_item', work: work%>
+                        <% end %>
+                      <% end %>
+                    </td>
+                    <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Thurs" && compare_time(work,Time.utc(2000,1,1,10,0,0), Time.utc(2000,1,1,12,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Fri" && compare_time(work,Time.utc(2000,1,1,10,0,0), Time.utc(2000,1,1,12,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Sat" && compare_time(work,Time.utc(2000,1,1,10,0,0), Time.utc(2000,1,1,12,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Sun" && compare_time(work,Time.utc(2000,1,1,10,0,0), Time.utc(2000,1,1,12,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td class="align-middle"> 12-2pm</td>
+                        <td>
+                          <% @works.each do |work| %>
+                            <% if work.day == "Mon" && compare_time(work,Time.utc(2000,1,1,12,0,0), Time.utc(2000,1,1,14,0,0)) %>
+                              <%= render 'timetable_item', work: work%>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% @works.each do |work| %>
+                            <% if work.day == "Tue" && compare_time(work,Time.utc(2000,1,1,12,0,0), Time.utc(2000,1,1,14,0,0)) %>
+                              <%= render 'timetable_item', work: work%>
+                            <% end %>
+                          <% end %>
+                        </td>
+
+                        <td>
+                          <% @works.each do |work| %>
+                            <% if work.day == "Wed" && compare_time(work,Time.utc(2000,1,1,12,0,0), Time.utc(2000,1,1,14,0,0)) %>
+                              <%= render 'timetable_item', work: work%>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% @works.each do |work| %>
+                            <% if work.day == "Thurs" && compare_time(work,Time.utc(2000,1,1,12,0,0), Time.utc(2000,1,1,14,0,0)) %>
+                              <%= render 'timetable_item', work: work%>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% @works.each do |work| %>
+                            <% if work.day == "Fri" && compare_time(work,Time.utc(2000,1,1,12,0,0), Time.utc(2000,1,1,14,0,0)) %>
+                              <%= render 'timetable_item', work: work%>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% @works.each do |work| %>
+                            <% if work.day == "Sat" && compare_time(work,Time.utc(2000,1,1,12,0,0), Time.utc(2000,1,1,14,0,0)) %>
+                              <%= render 'timetable_item', work: work%>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% @works.each do |work| %>
+                            <% if work.day == "Sun" && compare_time(work,Time.utc(2000,1,1,12,0,0), Time.utc(2000,1,1,14,0,0)) %>
+                              <%= render 'timetable_item', work: work%>
+                            <% end %>
+                          <% end %>
+                        </td>
+                      </tr>
+                            
+                      <tr>
+                        <td class="align-middle"> 2-4pm</td>
+                        <td>
+                          <% @works.each do |work| %>
+                            <% if work.day == "Mon" && compare_time(work,Time.utc(2000,1,1,14,0,0), Time.utc(2000,1,1,16,0,0)) %>
+                              <%= render 'timetable_item', work: work%>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% @works.each do |work| %>
+                            <% if work.day == "Tue" && compare_time(work,Time.utc(2000,1,1,14,0,0), Time.utc(2000,1,1,16,0,0)) %>
+                              <%= render 'timetable_item', work: work%>
+                            <% end %>
+                          <% end %>
+                        </td>
+
+                        <td>
+                          <% @works.each do |work| %>
+                            <% if work.day == "Wed" && compare_time(work,Time.utc(2000,1,1,14,0,0), Time.utc(2000,1,1,16,0,0)) %>
+                              <%= render 'timetable_item', work: work%>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% @works.each do |work| %>
+                            <% if work.day == "Thurs" && compare_time(work,Time.utc(2000,1,1,14,0,0), Time.utc(2000,1,1,16,0,0)) %>
+                              <%= render 'timetable_item', work: work%>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% @works.each do |work| %>
+                            <% if work.day == "Fri" && compare_time(work,Time.utc(2000,1,1,14,0,0), Time.utc(2000,1,1,16,0,0)) %>
+                              <%= render 'timetable_item', work: work%>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% @works.each do |work| %>
+                            <% if work.day == "Sat" && compare_time(work,Time.utc(2000,1,1,14,0,0), Time.utc(2000,1,1,16,0,0)) %>
+                              <%= render 'timetable_item', work: work%>
+                            <% end %>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% @works.each do |work| %>
+                            <% if work.day == "Sun" && compare_time(work,Time.utc(2000,1,1,14,0,0), Time.utc(2000,1,1,16,0,0) ) %>
+                              <%= render 'timetable_item', work: work%>
+                            <% end %>
+                          <% end %>
+                        </td>
+                    </tr>
+
+                    <tr>
+                      <td class="align-middle"> 4-6pm</td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Mon" && compare_time(work,Time.utc(2000,1,1,16,0,0), Time.utc(2000,1,1,18,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Tue" && compare_time(work,Time.utc(2000,1,1,16,0,0), Time.utc(2000,1,1,18,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Wed" && compare_time(work,Time.utc(2000,1,1,16,0,0), Time.utc(2000,1,1,18,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Thurs" && compare_time(work,Time.utc(2000,1,1,16,0,0), Time.utc(2000,1,1,18,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Fri" && compare_time(work,Time.utc(2000,1,1,16,0,0), Time.utc(2000,1,1,18,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Sat" && compare_time(work,Time.utc(2000,1,1,16,0,0), Time.utc(2000,1,1,18,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Sun" && compare_time(work,Time.utc(2000,1,1,16,0,0), Time.utc(2000,1,1,18,0,0) ) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                  </tr>
+
+                  <tr>
+                    <td class="align-middle"> 6-8pm</td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Mon" && compare_time(work,Time.utc(2000,1,1,18,0,0), Time.utc(2000,1,1,20,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Tue" && compare_time(work,Time.utc(2000,1,1,18,0,0), Time.utc(2000,1,1,20,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Wed" && compare_time(work,Time.utc(2000,1,1,18,0,0), Time.utc(2000,1,1,20,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Thurs" && compare_time(work,Time.utc(2000,1,1,18,0,0), Time.utc(2000,1,1,20,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Fri" && compare_time(work,Time.utc(2000,1,1,18,0,0), Time.utc(2000,1,1,20,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Sat" && compare_time(work,Time.utc(2000,1,1,18,0,0), Time.utc(2000,1,1,20,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                         <% @works.each do |work| %>
+                            <% if work.day == "Sun" && compare_time(work,Time.utc(2000,1,1,18,0,0), Time.utc(2000,1,1,20,0,0) ) %>
+                              <%= render 'timetable_item', work: work%>
+                            <% end %>
+                          <% end %>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td class="align-middle"> 8-10pm</td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Mon" && compare_time(work,Time.utc(2000,1,1,20,0,0), Time.utc(2000,1,1,22,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Tue" && compare_time(work,Time.utc(2000,1,1,20,0,0), Time.utc(2000,1,1,22,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Wed" && compare_time(work,Time.utc(2000,1,1,20,0,0), Time.utc(2000,1,1,22,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Thurs" && compare_time(work,Time.utc(2000,1,1,20,0,0), Time.utc(2000,1,1,22,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Fri" && compare_time(work,Time.utc(2000,1,1,20,0,0), Time.utc(2000,1,1,22,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Sat" && compare_time(work,Time.utc(2000,1,1,20,0,0), Time.utc(2000,1,1,22,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <td>
+                        <% @works.each do |work| %>
+                          <% if work.day == "Sun" && compare_time(work,Time.utc(2000,1,1,20,0,0), Time.utc(2000,1,1,22,0,0)) %>
+                            <%= render 'timetable_item', work: work%>
+                          <% end %>
+                        <% end %>
+                      </td>
+                    </tr>
+
+                            
+                            
+               </tbody>
+        </table>
+    </div>
 </div>
-
-
-<table>
-  <thead>
-    <tr>
-      <th> Day </th>
-      <th> Work </th>
-      <th> Start Time </th>
-      <th> End Time </th>
-      <th> Category </th>
-    </tr>
-  </thead>
-  <% @works.each do |work| %>
-    <% if work.user == current_user  || current_user.admin? %>
-      <tbody>
-            <td> <%= work.day%> </td>
-            <td> <%= work.work%> </td>
-            <td> <%= work.starttime%> </td>
-            <td> <%= work.endtime.to_s[10..15]%> </td>
-            <td> <%= work.category%> </td>
-            <td>
-              <%= link_to "Show", timetable_path(work)%>
-              <%= link_to "Edit", edit_timetable_path(work)%>
-            </td>
-            <td><%= link_to "Done", work, method: :delete, data: {confirm: "Are you sure?"} %></td>
-            <td> Created by : <%= work.user.username %> </td>
-      </tbody>
-    <% end %>
-  <% end%>
-  </tbody>
-</table>
-
-<%= link_to "Create", new_timetable_path%>

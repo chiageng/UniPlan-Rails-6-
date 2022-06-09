@@ -1,0 +1,42 @@
+<h1> Showing all works in this page </h1>
+<div>
+    <%= link_to "All", timetables_path(category: "All")%>
+    <%= link_to "Study", timetables_path(category: "Study")%>
+    <%= link_to "Work", timetables_path(category: "Work")%>
+    <%= link_to "Social", timetables_path(category: "Social")%>
+    <%= link_to "To-do", timetables_path(category: "To-do")%>
+    <%= link_to "Other", timetables_path(category: "Other")%>
+</div>
+
+
+<table>
+  <thead>
+    <tr>
+      <th> Day </th>
+      <th> Work </th>
+      <th> Start Time </th>
+      <th> End Time </th>
+      <th> Category </th>
+    </tr>
+  </thead>
+  <% @works.each do |work| %>
+    <% if work.user == current_user  || current_user.admin? %>
+      <tbody>
+            <td> <%= work.day%> </td>
+            <td> <%= work.work%> </td>
+            <td> <%= work.starttime%> </td>
+            <td> <%= work.endtime.to_s[10..15]%> </td>
+            <td> <%= work.category%> </td>
+            <td>
+              <%= link_to "Show", timetable_path(work)%>
+              <%= link_to "Edit", edit_timetable_path(work)%>
+            </td>
+            <td><%= link_to "Done", work, method: :delete, data: {confirm: "Are you sure?"} %></td>
+            <td> Created by : <%= work.user.username %> </td>
+      </tbody>
+    <% end %>
+  <% end%>
+  </tbody>
+</table>
+
+<%= link_to "Create", new_timetable_path%>

@@ -5,9 +5,9 @@ class TimetablesController < ApplicationController
     
     def index
         if (params.has_key?(:category)) && params[:category] != "All"
-            @works = Timetable.where(category: params[:category])
+            @works = current_user.timetables.where(category: params[:category])
         else 
-            @works = Timetable.all 
+            @works = current_user.timetables.all 
         end 
     end 
 
