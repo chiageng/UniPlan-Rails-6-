@@ -170,17 +170,23 @@ body {
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
 }
 
-.registration-form .form-icon {
+.registration-form .forum-icon {
   text-align: center;
-  background-color: #5891ff;
+  background-image: asset-url("forum-icon.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 50%;
-  font-size: 40px;
   color: white;
   width: 100px;
   height: 100px;
   margin: auto;
   margin-bottom: 50px;
   line-height: 100px;
+  @media (min-width: 768px) {
+    width: 200px;
+    height: 200px;
+  }
 }
 
 .registration-form .item {
@@ -256,4 +262,13 @@ body {
     margin-left: 25%;
     width: 50%;
   }
+}
+
+.forum-icon {
+  background-image: asset-url("forum-icon.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+  width: 80%;
 }

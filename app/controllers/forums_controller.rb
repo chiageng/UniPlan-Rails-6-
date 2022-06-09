@@ -17,7 +17,7 @@ class ForumsController < ApplicationController
             flash[:success] = "A new forum is created successfully"
             redirect_to @forum
         else 
-            flash[:danger] = "The creation of forum is failed"
+            flash[:danger] = "Forum create is unsuccessfull"
             render "new"
         end 
     end 

@@ -47,7 +47,7 @@ class TodolistsController < ApplicationController
 
     private 
     def todolist_params 
-        params.require(:todolist).permit(:work)
+        params.require(:todolist).permit(:work, :priority)
     end 
 
     def todolist_find 

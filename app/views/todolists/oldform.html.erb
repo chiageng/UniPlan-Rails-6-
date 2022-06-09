@@ -1,0 +1,23 @@
+
+<%= form_with model: work do |form|%>
+    <div>
+        <%= form.label :work%><br>
+        <%= form.text_field :work%>
+        <% if work.errors.any? %>
+            <% work.errors.full_messages_for(:work).each do |message|%>
+                <div><%= message %></div>
+            <% end %> 
+        <% end %>
+    </div>
+
+    <div>
+        <%= form.label :priority%><br>
+        <%= form.select :priority,
+        [["High", "High"], ["Medium","Medium"], ["Low", "Low"]],
+        selected: "Medium" %><br>
+    </div>
+
+    <div>
+        <%= form.submit%>
+    </div>
+<% end %>

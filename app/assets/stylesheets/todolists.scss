@@ -108,3 +108,42 @@
 .mb-30 {
   margin-bottom: 30px;
 }
+
+.col-work {
+  margin-left: 0px;
+  margin-top: 10px;
+}
+
+.category .list-title {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: inline-block;
+    height: 50px;
+    border: 1px solid transparent;
+    padding: 10px 19px 25px 19px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: #8ec4f186;
+    color: #3514f1;
+  }
+}
+
+.registration-form .todolist-icon {
+  text-align: center;
+  background-image: asset-url("forum-icon.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  color: white;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  margin-bottom: 50px;
+  line-height: 100px;
+  @media (min-width: 768px) {
+    width: 200px;
+    height: 200px;
+  }
+}

@@ -1,15 +1,41 @@
-<%= form_with model: work do |form|%>
-    <div>
-        <%= form.label :work%><br>
-        <%= form.text_field :work%>
-        <% if work.errors.any? %>
-            <% work.errors.full_messages_for(:work).each do |message|%>
-                <div><%= message %></div>
-            <% end %> 
-        <% end %>
-    </div>
+<% if work.errors.any? %>
+  <div class="container alert alert-danger alert-dismissible fade show" role="alert">
+    <h4 class="alert-heading">The following errors prevented the work from being created</h4>
+    <ul>
+      <% work.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>
 
-    <div>
-        <%= form.submit%>
+<%= form_with model: work do |form|%>
+    <div class="registration-form container-form">
+        <form>
+            <div class="todolist-icon">
+            </div>
+            <div class="form-group">
+                <%= form.text_field :work, class:"form-control item", id:"username", placeholder:"Work"%>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Priority</label>
+                <div class="col-md-4 selectContainer">
+                <%= form.select :priority,
+                [["High", "High"], ["Medium","Medium"], ["Low", "Low"]],
+                selected: "Medium", class:"form-control selectpicker" %><br>
+                </div>
+            </div>
+            <div class="form-group">
+                <%= form.submit "Create Forum", class:"btn btn-block create-account"%>
+                <%= link_to "Cancel", todolists_path, class:"text-white btn btn-block create-account" %>
+            </div>
+        </form>
     </div>
 <% end %>
+        
+
+
+
