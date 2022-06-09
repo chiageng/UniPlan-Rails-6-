@@ -115,18 +115,7 @@
 }
 
 .category .list-title {
-  display: none;
-
-  @media (min-width: 768px) {
-    display: inline-block;
-    height: 50px;
-    border: 1px solid transparent;
-    padding: 10px 19px 25px 19px;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: #8ec4f186;
-    color: #3514f1;
-  }
+  margin-bottom: -20px;
 }
 
 .registration-form .todolist-icon {
