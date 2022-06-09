@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="col-3 border-right">
+    <%= render 'form', chat: Chat.new %>
+      <% @chats.each do |chat| %>
+        <%= link_to chat do%>
+        <%= chat.name %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-9">
+    <% if @chat.present? %>
+    <div class="chat-room">
+      <h2>Chat <%= @chat.id %> : <%= @chat.name %></h2>
+      <% @chat.messages.each do |message| %>
+        <div class="col">
+          <p class="mb-1">
+            <%= message.user.username%> : <%=message.content %>
+          </p>
+          <div class="text-right">
+            <small>
+              <%= message.created_at %>
+            </small>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="chat-send">
+        <%= render 'messages/form', message: Message.new, chat: @chat %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<% if false %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @chats.each do |chat| %>
+    <tr>
+      <td><%= chat.name %></td>
+      <td><%= link_to 'Show', chat %></td>
+      <td><%= link_to 'Edit', edit_chat_path(chat) %></td>
+      <td><%= link_to 'Destroy', chat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Chat', new_chat_path %>
+<% end %>
