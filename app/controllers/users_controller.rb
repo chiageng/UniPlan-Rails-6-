@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     def update 
         if @user.update(user_params)
             flash[:success] = "Your account has been updated successfully"
-            redirect_to todolists_path
+            redirect_to @user
         else 
             render "new"
         end 
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
 
     private 
     def user_params 
-        params.require(:user).permit(:username, :email, :password)
+        params.require(:user).permit(:username, :email, :password, :job, :fullname, :phone, :address, :website, :github, :twitter, :instagram, :facebook)
     end 
 
     def find_user
