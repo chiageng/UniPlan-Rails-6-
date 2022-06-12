@@ -37,14 +37,16 @@
                 <% for i in 0..6%>
                   <td>
                     <% @works.each do |work| %>
-                      <% if work.day == @days[i] && compare_time(work,Time.utc(2000,1,1,8 + j * 2,0,0), Time.utc(2000,1,1,10 + j * 2,0,0)) %>
+                      <% if work.day == @days[i] && compare_time(work,Time.utc(2000,1,1,8 + j * 2,0,0), Time.utc(2000,1,1,10 + j * 2,0,0)) && work.category != "To-do"%>
                         <%= render 'timetable_item', work: work%>
                       <% end %>
                     <% end %>
+                    <% if @todo %>
                     <% @todo.each do |work|%>
                       <% if work.day == @days[i] && compare_time(work,Time.utc(2000,1,1,8 + j * 2,0,0), Time.utc(2000,1,1,10 + j * 2,0,0)) %>
                         <%= render 'todo_item', work: work%>
                       <% end %>
+                    <% end %>
                     <% end %>
                   </td>
                 <% end %>
