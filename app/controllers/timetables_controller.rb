@@ -4,6 +4,9 @@ class TimetablesController < ApplicationController
     before_action :require_same_user, only: [:edit, :update, :destroy]
     
     def index
+        @todo = current_user.todolists.where(status: "In-progress")
+        @days = [ "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat", "Sun"]
+        @times = ['8-10am', '10-12pm', '12-2pm', '2-4pm', '4-6pm', '6-8pm','8-10pm']
         if (params.has_key?(:category)) && params[:category] != "All"
             @works = current_user.timetables.where(category: params[:category])
         else 

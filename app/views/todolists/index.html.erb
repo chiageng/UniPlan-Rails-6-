@@ -74,12 +74,15 @@
                             <h5 class= "font-weight-bold"><%= work.work%> </h5>
                             <ul class="place">
                             <li>
-                                <p><i class="fas fa-map-marker-alt pe-2"></i> <%= work.status %></p>
+                                <% if work.starttime %>
+                                    <p> Suggested Day : <%= work.day %> </p>
+                                    <p> Start Time :<%= readable_time(work.starttime) %></p>
+                                    <p> End Time :<%= readable_time(work.endtime)%> </p>
+                                <% end %>
                             </li>
                             </ul>
                             <div class="pricing d-flex justify-content-between align-items-center">
                                 <div class="left">
-                                    <p>Created <%= time_ago_in_words(work.created_at) %></p>
                                     <td>
                                         <%= link_to "Done", todolist_path(work, status: "Done")%>
 
@@ -113,9 +116,9 @@
                             <% elsif work.priority == "Medium" %>
                                 <span class="colors1 mb-4">Medium</span>
                             <% else %>
-                                <span class="colors2 mb-4">Low</span>
+                                <span class="colors2 mb-4 ">Low</span>
                             <% end %>
-                            <h5 class= "font-weight-bold"><%= work.work%> </h5>
+                            <h5 class= "font-weight-bold text-capitalize"><%= work.work%> </h5>
                             <ul class="place">
                             <li>
                                 <p><i class="fas fa-map-marker-alt pe-2"></i> <%= work.status %></p>

@@ -18,7 +18,11 @@ class TodolistsController < ApplicationController
             @work.status = params[:status] 
             @work.save 
             flash[:success] = "Status of pending work updated"
-            redirect_to todolists_path
+            if params[:status] == "In-progress"
+                redirect_to edit_todolist_path(@work)
+            else 
+                redirect_to todolists_path 
+            end 
         end 
     end 
 
@@ -56,7 +60,7 @@ class TodolistsController < ApplicationController
 
     private 
     def todolist_params 
-        params.require(:todolist).permit(:work, :priority)
+        params.require(:todolist).permit(:work, :priority, :day, :starttime, :endtime)
     end 
 
     def todolist_find 

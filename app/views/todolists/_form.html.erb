@@ -28,10 +28,27 @@
                 selected: "Medium", class:"form-control selectpicker" %><br>
                 </div>
             </div>
-            <div class="form-group">
-                <%= form.submit "Create Forum", class:"btn btn-block create-account"%>
-                <%= link_to "Cancel", todolists_path, class:"text-white btn btn-block create-account" %>
-            </div>
+
+            <% if work.status == "In-progress" %>
+              <div>
+                <%= form.label :Day%><br>
+                <%= form.select :day,
+                [["Monday", "Mon"], ["Tuesday","Tue"], ["Wednesday", "Wed"], ["Thursday", "Thurs"] , ["Friday", "Fri"], ["Saturday", "Sat"], ["Sunday", "Sun"]] %><br>
+              </div>
+              <div>
+                  <%= form.label :start%><br>
+                  <%= form.time_select :starttime %>
+              </div>
+
+              <div>
+                  <%= form.label :end%><br>
+                  <%= form.time_select :endtime, class: 'datetime' %>
+              </div>
+            <% end %>
+              <div class="form-group">
+                  <%= form.submit "Create To-do-list", class:"btn btn-block create-account"%>
+                  <%= link_to "Cancel", todolists_path, class:"text-white btn btn-block create-account" %>
+              </div>
         </form>
     </div>
 <% end %>

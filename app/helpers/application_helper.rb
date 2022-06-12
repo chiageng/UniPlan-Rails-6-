@@ -7,4 +7,5 @@ module ApplicationHelper
         (work.starttime.strftime( "%H%M%S%N" ) >= starttime.utc.strftime( "%H%M%S%N" ) && work.starttime.strftime( "%H%M%S%N" ) <= endtime.utc.strftime( "%H%M%S%N" )) || (work.endtime.strftime( "%H%M%S%N" ) >= starttime.utc.strftime( "%H%M%S%N" ) && work.endtime.strftime( "%H%M%S%N" ) <= endtime.utc.strftime( "%H%M%S%N" ))
         
     end 
+
 end

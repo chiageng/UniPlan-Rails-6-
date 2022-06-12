@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_09_024305) do
+ActiveRecord::Schema.define(version: 2022_06_12_024538) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment"
@@ -47,6 +47,10 @@ ActiveRecord::Schema.define(version: 2022_06_09_024305) do
     t.integer "user_id"
     t.string "priority"
     t.string "status", default: "Pending"
+    t.string "day"
+    t.datetime "starttime"
+    t.datetime "endtime"
+    t.string "category", default: "To-do"
   end
 
   create_table "users", force: :cascade do |t|
