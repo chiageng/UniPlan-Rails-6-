@@ -1,34 +1,46 @@
-<h1> Here is show page </h1>
+<div class="container mt-5">
+    <div class="d-flex justify-content-center row">
+        <div class="col-md-10">
+            <div class="d-flex flex-column comment-section">
+                <div class="bg-white p-2">
+                    <div class="d-flex flex-row user-info"><img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png" width="60">
+                        <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name"><%= @forum.user.username %></span><span class="date text-black-50">Created <%= time_ago_in_words(@forum.created_at) %> ago, edited <%= time_ago_in_words(@forum.updated_at) %> ago</span></div>
+                    </div>
+                    <div class="mt-2 ml-3">
+                        <p class="comment-text"><%= @forum.description %></p>
+                    </div>
+                </div>
+                <div class="bg-white">
+                    <div class="d-flex flex-row fs-12">
+                        <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span></div>
+                        <div class="like p-2 cursor"><i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span></div>
+                        <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span></div>
+                    </div>
+                </div>
+                
+                <% @forum.comments.each do |comment| %>
+                <div class="bg-light p-2">
+                    <div class="d-flex flex-row user-info"><img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png" width="60">
+                        <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name"><%= comment.user.username %></span><span class="date text-black-50">Created <%= time_ago_in_words(comment.created_at) %>  ago</span></div>
+                    </div>
+                    <div class="mt-2 ml-3">
+                        <p class="comment-text"><%= comment.comment %></p>
+                    </div>
+                </div>
+                <% end %>
+                
+                <%= form_with model: [ @forum, @forum.comments.build ] do |form| %>
+                <div class="bg-light p-2">
 
-<h3> Topic : <%= @forum.topic%> </h3>
-<p> Desciption : <%= @forum.description%> </p>
-<p> Created by : <%= @forum.user.username%> </p>
-
-<h4>Comments</h4>
-<% @forum.comments.each do |comment| %>
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.comment %>
-  </p>
-  <p>
-    <strong>Commenter:</strong>
-    <%= comment.user.username %>
-  </p>
-  <% if comment.user == current_user%>
-    <%= link_to "Delete comment", [comment.forum, comment], method: :delete, data: {confirm: "Are you sure? "} %>
-  <% end %>
-
-<% end %>
-
-<%= form_with model: [ @forum, @forum.comments.build ] do |form| %>
-  	<p>
-    		<%= form.label :comment %><br>
-    		<%= form.text_field :comment %>
-  	</p>
-  	<p>
-    		<%= form.submit %>
-  	</p>
-<% end %>
-
-<%= link_to "Edit", edit_forum_path(@forum) %>
-<%= link_to "Home", forums_path%>
+                    <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png" width="40">
+                    <%= form.text_field :comment, class:"form-control", placeholder:"Add comment" %>
+                    </div>
+                    <div class="mt-2 text-right">
+                    <%= form.submit "Comment", class: "btn btn-primary mt-3 " %>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
