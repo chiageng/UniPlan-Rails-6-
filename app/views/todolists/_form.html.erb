@@ -21,11 +21,11 @@
                 <%= form.text_field :work, class:"form-control item", id:"username", placeholder:"Work"%>
             </div>
             <div class="form-group">
-                <label class="col-md-4 control-label">Priority</label>
-                <div class="col-md-4 selectContainer">
+                <label class="">Priority</label>
+                <div class="">
                 <%= form.select :priority,
                 [["High", "High"], ["Medium","Medium"], ["Low", "Low"]],
-                selected: "Medium", class:"form-control selectpicker" %><br>
+                {},  {class:'form-control'} %><br>
                 </div>
             </div>
 
@@ -33,16 +33,16 @@
               <div>
                 <%= form.label :Day%><br>
                 <%= form.select :day,
-                [["Monday", "Mon"], ["Tuesday","Tue"], ["Wednesday", "Wed"], ["Thursday", "Thurs"] , ["Friday", "Fri"], ["Saturday", "Sat"], ["Sunday", "Sun"]] %><br>
+                [["Monday", "Mon"], ["Tuesday","Tue"], ["Wednesday", "Wed"], ["Thursday", "Thurs"] , ["Friday", "Fri"], ["Saturday", "Sat"], ["Sunday", "Sun"]], {},  {class:'form-control'} %><br>
               </div>
               <div>
                   <%= form.label :start%><br>
-                  <%= form.time_select :starttime %>
+                  <%= form.time_select :starttime, {},  {class:'form-control-time'} %>
               </div>
 
               <div>
                   <%= form.label :end%><br>
-                  <%= form.time_select :endtime, class: 'datetime' %>
+                  <%= form.time_select :endtime, {},  {class:'form-control-time'} %>
               </div>
             <% end %>
               <div class="form-group">
