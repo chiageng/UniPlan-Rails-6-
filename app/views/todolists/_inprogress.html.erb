@@ -1,0 +1,48 @@
+<div class="col col-work">
+            <div class="col-lg-4 ">
+                <div class="category mb-30">
+                        <div class="list-title">
+                            <h4 class= "font-weight-bold text-center"> In-progress </h1>
+                        </div>
+                </div>
+            </div>
+            <div class="row">
+            <% @works2.each do |work| %>
+                <% if work.user == current_user  || current_user.admin? %>
+                    <div class="col-lg-4 ">
+                        <div class="category mb-30 todolist-card">
+                            <div class="job ">
+                            <% if work.priority == "High"%>
+                                <span class="colors5 mb-4">High</span>
+                            <% elsif work.priority == "Medium" %>
+                                <span class="colors1 mb-4">Medium</span>
+                            <% else %>
+                                <span class="colors2 mb-4">Low</span>
+                            <% end %>
+                            <h5 class= "font-weight-bold"><%= work.work%> </h5>
+                            <ul class="place">
+                            <li>
+                                <% if work.starttime %>
+                                    <p> Suggested Day : <%= work.day %> </p>
+                                    <p> Start Time :<%= readable_time(work.starttime) %></p>
+                                    <p> End Time :<%= readable_time(work.endtime)%> </p>
+                                <% end %>
+                            </li>
+                            </ul>
+                            <div class="pricing d-flex justify-content-between align-items-center inprogress">
+                                <div class="left">
+                                    <td>
+                                        <%= link_to "Show", todolist_path(work), class:"btn btn-primary font-weight-bold"%>
+                                        <%= link_to "Edit", edit_todolist_path(work), class:"btn btn-info font-weight-bold"%>
+                                        <%= link_to "Done", todolist_path(work, status: "Done"), class:"btn btn-success font-weight-bold"%>
+                                    </td>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <% end %>
+            <% end %>
+            </div>
+    </div>

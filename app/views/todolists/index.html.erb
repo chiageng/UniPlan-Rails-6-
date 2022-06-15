@@ -1,158 +1,18 @@
 <div class="container">
     <div class="inner-main-header">
                 <!-- Inner sidebar header -->
-              <div class="inner-sidebar-header justify-content-center">
-                <%= link_to "Create New Work", new_todolist_path, class:"navbar-brand font-weight-bold font-black" %>
-        </div>
-    </div>
-    <div class="col col-work">
-            <div class="col-lg-4 ">
-                <div class="category mb-30">
-                        <div class="list-title">
-                            <h4 class= "font-weight-bold text-center"> To begin </h1>
-                        </div>
-                </div>
-            </div>
-            <div class="row">
-            <% @works1.each do |work| %>
-                <% if work.user == current_user  || current_user.admin? %>
-                    <div class="col-lg-4 ">
-                        <div class="category mb-30 todolist-card">
-                            <div class="job">
-                            <% if work.priority == "High"%>
-                                <span class="colors5 mb-4">High</span>
-                            <% elsif work.priority == "Medium" %>
-                                <span class="colors1 mb-4">Medium</span>
-                            <% else %>
-                                <span class="colors2 mb-4">Low</span>
-                            <% end %>
-                            <h5 class= "font-weight-bold"><%= work.work%> </h5>
-                            <ul class="place">
-                            <li>
-                                <p><i class="fas fa-map-marker-alt pe-2"></i> <%= work.status %></p>
-                            </li>
-                            </ul>
-                            <div class="pricing d-flex justify-content-between align-items-center">
-                                <div class="left">
-                                    <p>Created <%= time_ago_in_words(work.created_at) %></p>
-                                    <td>
-                                        <%= link_to "Show", todolist_path(work)%>
-                                        <%= link_to "Edit", edit_todolist_path(work)%>
-                                        <%= link_to "In-progress", todolist_path(work, status: "In-progress")%>
-                                        </td>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <% end %>
-            <% end %>
+            <div class="inner-sidebar-header justify-content-center">
+                <%= link_to "Create New Task", new_todolist_path, class:"navbar-brand font-weight-bold font-black" %>
             </div>
     </div>
+    
+    
+    <%= render 'tobegin'%>
 
-    <div class="col col-work">
-            <div class="col-lg-4 ">
-                <div class="category mb-30">
-                        <div class="list-title">
-                            <h4 class= "font-weight-bold text-center"> In-progress </h1>
-                        </div>
-                </div>
-            </div>
-            <div class="row">
-            <% @works2.each do |work| %>
-                <% if work.user == current_user  || current_user.admin? %>
-                    <div class="col-lg-4 ">
-                        <div class="category mb-30 todolist-card">
-                            <div class="job">
-                            <% if work.priority == "High"%>
-                                <span class="colors5 mb-4">High</span>
-                            <% elsif work.priority == "Medium" %>
-                                <span class="colors1 mb-4">Medium</span>
-                            <% else %>
-                                <span class="colors2 mb-4">Low</span>
-                            <% end %>
-                            <h5 class= "font-weight-bold"><%= work.work%> </h5>
-                            <ul class="place">
-                            <li>
-                                <% if work.starttime %>
-                                    <p> Suggested Day : <%= work.day %> </p>
-                                    <p> Start Time :<%= readable_time(work.starttime) %></p>
-                                    <p> End Time :<%= readable_time(work.endtime)%> </p>
-                                <% end %>
-                            </li>
-                            </ul>
-                            <div class="pricing d-flex justify-content-between align-items-center">
-                                <div class="left">
-                                    <td>
-                                        <%= link_to "Show", todolist_path(work)%>
-                                        <%= link_to "Done", todolist_path(work, status: "Done")%>
+    <%= render 'inprogress'%>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <% end %>
-            <% end %>
-            </div>
-    </div>
-
-    <div class="col col-work">
-            <div class="col-lg-4 ">
-                <div class="category mb-30">
-                        <div class="list-title">
-                            <h4 class= "font-weight-bold text-center"> Done </h1>
-                        </div>
-                </div>
-            </div>
-            <div class="row">
-            <% @works3.each do |work| %>
-                <% if work.user == current_user  || current_user.admin? %>
-                    <div class="col-lg-4 ">
-                        <div class="category mb-30 todolist-card">
-                            <div class="job">
-                            <% if work.priority == "High"%>
-                                <span class="colors5 mb-4">High</span>
-                            <% elsif work.priority == "Medium" %>
-                                <span class="colors1 mb-4">Medium</span>
-                            <% else %>
-                                <span class="colors2 mb-4 ">Low</span>
-                            <% end %>
-                            <h5 class= "font-weight-bold text-capitalize"><%= work.work%> </h5>
-                            <ul class="place">
-                            <li>
-                                <p><i class="fas fa-map-marker-alt pe-2"></i> <%= work.status %></p>
-                            </li>
-                            </ul>
-                            <div class="pricing d-flex justify-content-between align-items-center">
-                                <div class="left">
-                                    <p>Created <%= time_ago_in_words(work.created_at) %></p>
-                                    <td>
-                                    <td>
-                                    <%= link_to "Show", todolist_path(work)%>
-                                    <%= link_to "Delete", work, method: :delete, data: {confirm: "Are you sure?"} %></td>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <% end %>
-            <% end %>
-            </div>
-            
-            <div class="col-12 d-flex align-items-center justify-content-center">
-                <div class="btn btn-primary mb-30">
-                    <span>Find More</span>
-                    <span class="fas fa-arrow-right"></span>
-                </div>
-            </div>
-    </div>
-
-        
+    <%= render 'done'%>
+      
 </div>
 
 
-<%= link_to "Create", new_todolist_path%>
