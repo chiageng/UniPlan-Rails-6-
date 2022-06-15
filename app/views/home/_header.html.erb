@@ -17,16 +17,12 @@
         </li>
 
         <li class="nav-item">
-
+          <%= link_to "Profile", user_path(current_user), class:"nav-link" %>
         </li>
 
         <% if current_user.admin? %>
             <li class="nav-item">
                 <%= link_to "Users", users_path, class:"nav-link" %>
-            </li>
-        <% else %>
-            <li class="nav-item">
-                <%= link_to "Profile", user_path(current_user), class:"nav-link" %>
             </li>
         <% end %>
       <% end %>
