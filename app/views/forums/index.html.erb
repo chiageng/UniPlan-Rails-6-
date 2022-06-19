@@ -44,50 +44,29 @@
             <!-- Inner main header -->
             <div class="inner-main-header">
                 <!-- Inner sidebar header -->
-              <div class="inner-sidebar-header justify-content-center", id= "forum-inner">
-                  <%= link_to "Create New Forum", new_forum_path, class: "btn btn-primary has-icon btn-block"%>
-              </div>
-
-                <span class="input-icon input-icon-sm ml-auto w-auto">
-                    <input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search forum" />
-                </span>
+                <div class="inner-sidebar-header justify-content-center", id= "forum-inner">
+                  <%= link_to "New Forum", new_forum_path, class: "btn btn-primary has-icon btn-block"%>
+                </div>
+                
+                <%= form_tag search_forum_path, method: :get do %>
+                    <div class="input-group">
+                        <%= text_field_tag :forum, params[:forum], placeholder: "Search Forum", autofocus: true, class: "form-control"%>
+                        <div class="input-group-append">
+                        <%= button_tag type: :submit, class: "btn btn-success" do %>
+                            <%= "Search"  %>
+                        <% end %>
+                        </div>
+                    </div>
+                <% end %>
+                
             </div>
+            
             <!-- /Inner main header -->
 
             <!-- Inner main body -->
 
             <!-- Forum List -->
-            <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
-              <% @forums.each do |forum| %>
-                <div class="card mb-2">
-                    <div class="card-body p-2 p-sm-3">
-                        <div class="media forum-item">
-                            <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                            <div class="media-body">
-                                <h6><%=link_to forum.topic.capitalize, forum_path(forum), class: "link-black"%></h6>
-                                <% if forum.categories.any? %>
-                                    <% forum.categories.each do |category| %>
-                                        <h4 class="badge badge-success"><%= category.category %></h4>
-                                    <% end %>
-                                <% end %>
-                                <p class="text-secondary">
-                                    <%= truncate(forum.description, length:100)%>
-                                </p>
-                                <span class="text-secondary font-weight-bold">Created <%= time_ago_in_words(forum.created_at) %> ago,
-                                edited <%= time_ago_in_words(forum.updated_at) %> ago</span></p>
-                            </div>
-                            <div class="align-self-center">
-                                <%= link_to "Show", forum_path(forum), class:"btn btn-success font-weight-bold"%>
-                                <% if forum.user == current_user || (logged_in? && current_user.admin?) %>
-                                  <%= link_to "Edit", edit_forum_path(forum), class:"btn btn-primary font-weight-bold", id:"phone-hidden"%>
-                                  <%= link_to "Delete", forum_path(forum), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger font-weight-bold", id:"phone-hidden"%>
-                                <% end %>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              <% end %>
-            </div>
+            <%= render 'forum_result'%>
         </div>
     </div>
 </div>

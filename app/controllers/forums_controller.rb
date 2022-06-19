@@ -52,6 +52,17 @@ class ForumsController < ApplicationController
         redirect_to forums_path
     end 
 
+    def search 
+        if params[:forum].present?
+            @forums = Forum.search(params[:forum])
+            render 'forums/index'
+        else 
+            flash[:danger] = "Please enter something to search"
+            redirect_to forums_path
+        end 
+    end 
+
+
     private 
     def forum_params
         params.require(:forum).permit(:topic, :description,category_ids: [])
