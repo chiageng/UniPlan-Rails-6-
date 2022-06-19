@@ -6,6 +6,8 @@ class User < ApplicationRecord
     has_many :timetables, dependent: :destroy
     has_many :friendships
     has_many :friends, through: :friendships
+    has_many :user_categories 
+    has_many :categories, through: :user_categories
 
     validates :username, presence: true, uniqueness: {case_sensitive: false}
 	VALID_EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
