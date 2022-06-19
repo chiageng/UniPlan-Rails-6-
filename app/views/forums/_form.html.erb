@@ -23,6 +23,11 @@
             <div class="form-group">
                 <%= form.text_field :description, class:"form-control item", id:"username", placeholder:"Forum Description"%>
             </div>
+
+            <div class="form-group">
+              <%= form.collection_select :category_ids, Category.order(:category), :id, :category, {prompt: "Make your selection of categories"}, {multiple: true, class: "custom-select"} %>
+            </div>
+
             <div class="form-group">
                 <%= form.submit "Create Forum", class:"btn btn-block create-account"%>
                 <%= link_to "Cancel", forums_path, class:"text-white btn btn-block create-account" %>

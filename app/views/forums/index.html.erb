@@ -20,12 +20,10 @@
                                 <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
                                     <div class="simplebar-content" style="padding: 16px;">
                                         <nav class="nav nav-pills nav-gap-y-1 flex-column">
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">All Threads</a>
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Popular this week</a>
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Popular all time</a>
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Solved</a>
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Unsolved</a>
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">No replies yet</a>
+                                            <%= link_to "All", forums_path(category: "All"), class:"nav-link nav-link-faded has-icon"  %>
+                                            <% Category.all.each do |category|%>
+                                                <%= link_to category.category, forums_path(category: category.category), class:"nav-link nav-link-faded has-icon"  %>
+                                            <% end %>
                                         </nav>
                                     </div>
                                 </div>
@@ -49,6 +47,10 @@
               <div class="inner-sidebar-header justify-content-center", id= "forum-inner">
                   <%= link_to "Create New Forum", new_forum_path, class: "btn btn-primary has-icon btn-block"%>
               </div>
+
+                <span class="input-icon input-icon-sm ml-auto w-auto">
+                    <input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search forum" />
+                </span>
             </div>
             <!-- /Inner main header -->
 
@@ -62,7 +64,12 @@
                         <div class="media forum-item">
                             <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
                             <div class="media-body">
-                                <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"><%= forum.topic%></a></h6>
+                                <h6><%=link_to forum.topic.capitalize, forum_path(forum), class: "link-black"%></h6>
+                                <% if forum.categories.any? %>
+                                    <% forum.categories.each do |category| %>
+                                        <h4 class="badge badge-success"><%= category.category %></h4>
+                                    <% end %>
+                                <% end %>
                                 <p class="text-secondary">
                                     <%= truncate(forum.description, length:100)%>
                                 </p>

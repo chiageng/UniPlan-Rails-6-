@@ -3,10 +3,27 @@
         <div class="col-md-10">
             <div class="d-flex flex-column comment-section">
                 <div class="bg-white p-2">
-                    <div class="d-flex flex-row user-info"><img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png" width="60">
-                        <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name"><%= @forum.user.username %></span><span class="date text-black-50">Created <%= time_ago_in_words(@forum.created_at) %> ago, edited <%= time_ago_in_words(@forum.updated_at) %> ago</span></div>
+                    <div class="d-flex flex-row user-info"><img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png" width="100">
+                        <div class="ml-2">
+                        
+                        <h5 class="font-weight-bold name mt-1">
+                            <%=link_to @forum.user.username.capitalize,user_path(@forum.user), class:"link-black" %>  
+                        </h5> 
+
+
+                         <% if @forum.categories.any? %>
+                            <% @forum.categories.each do |category| %>
+                                <h4 class="badge badge-success"><%= category.category %></h4>
+                            <% end %>
+                        <% end %>  
+                        <p class="text-black-50">Created <%= time_ago_in_words(@forum.created_at) %> ago, edited <%= time_ago_in_words(@forum.updated_at) %> ago</p>
+                        </div>
                     </div>
+                    
                     <div class="mt-2 ml-3">
+                        <h5 class="font-weight-bold name">
+                            <%= @forum.topic.capitalize %>  
+                        </h5> 
                         <p class="comment-text"><%= @forum.description %></p>
                     </div>
                 </div>
