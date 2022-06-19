@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   resources :timetables 
 
   resources :categories
+
+  resources :friendships, only: [:create, :destroy]
 end

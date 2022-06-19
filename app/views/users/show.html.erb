@@ -13,8 +13,14 @@
                       <h4><%= @user.username.capitalize %></h4>
                       <p class="text-secondary mb-1"><%= @user.job %></p>
                       <p class="text-muted font-size-sm"><%=@user.address%></p>
-                      <button class="btn btn-primary">Follow</button>
+                      <% if current_user != @user%>
+                      <% if current_user.not_friend_with(@user) %>
+                        <%= link_to "Add Friend", friendships_path(friend: @user), method: :post, class:"btn btn-primary font-weight-bold"%>
+                      <% else %>
+                        <%= link_to "Remove Friend", friendship_path(@user), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger font-weight-bold"%>
+                      <% end %>
                       <button class="btn btn-outline-primary">Message</button>
+                      <% end %>
                     </div>
                   </div>
                 </div>
@@ -157,6 +163,3 @@
 
         </div>
     </div>
-
-
-<%= link_to "Users page", users_path%>
