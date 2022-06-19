@@ -5,10 +5,7 @@
 <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Admin Page</h4>
-                  <p class="card-description">
-                    Users
-                  </p>
+                  <h4 class="card-title">Users Page</h4>
                   <div class="table-responsive">
                     <table class="table">
                       <thead>
@@ -27,8 +24,11 @@
                           <td>Created <%= time_ago_in_words(user.created_at) %> ago</td>
                           <td>
                             <%= link_to "Show", user, class:"btn btn-success font-weight-bold"%>
-                            <%= link_to "Edit", edit_user_path(user), class:"btn btn-primary font-weight-bold"%>
-                            <%= link_to "Delete", user, method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger font-weight-bold"%>
+
+                            <% if current_user == user || current_user.admin?%>
+                              <%= link_to "Edit", edit_user_path(user), class:"btn btn-primary font-weight-bold"%>
+                              <%= link_to "Delete", user, method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger font-weight-bold"%>
+                            <% end %>
                           </td>
                         </tr>
                       <% end %>
