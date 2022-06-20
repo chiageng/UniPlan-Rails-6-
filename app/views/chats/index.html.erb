@@ -15,15 +15,17 @@
     <div class="chat-room">
       <h2>Chat <%= @chat.id %> : <%= @chat.name %></h2> 
       <hr>
-      <div class="message">
-        <% @chat.messages.each do |message| %>
-          <%= render 'messages/message', message: message %>
-        <% end %>
-      </div>
+      <div class="chat-box">
+        <div class="message">
+          <% @chat.messages.each do |message| %>
+            <%= render 'messages/message', message: message %>
+          <% end %>
+        </div>
 
-      <div class="chat-send">
-        <%= render 'messages/form', message: Message.new, chat: @chat%>
-        <% end %>
+        <div class="chat-send">
+          <%= render 'messages/form', message: Message.new, chat: @chat%>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
