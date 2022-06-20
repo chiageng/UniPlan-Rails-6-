@@ -9,25 +9,20 @@
       <% end %>
     <% end %>
   </div>
+  
   <div class="col-9">
     <% if @chat.present? %>
     <div class="chat-room">
-      <h2>Chat <%= @chat.id %> : <%= @chat.name %></h2>
-      <% @chat.messages.each do |message| %>
-        <div class="col">
-          <p class="mb-1">
-            <%= message.user.username%> : <%=message.content %>
-          </p>
-          <div class="text-right">
-            <small>
-              <%= message.created_at %>
-            </small>
-          </div>
-        </div>
-      <% end %>
+      <h2>Chat <%= @chat.id %> : <%= @chat.name %></h2> 
+      <hr>
+      <div class="message">
+        <% @chat.messages.each do |message| %>
+          <%= render 'messages/message', message: message %>
+        <% end %>
+      </div>
 
       <div class="chat-send">
-        <%= render 'messages/form', message: Message.new, chat: @chat %>
+        <%= render 'messages/form', message: Message.new, chat: @chat%>
         <% end %>
       </div>
     </div>

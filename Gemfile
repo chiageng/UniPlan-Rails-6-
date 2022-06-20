@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'redis'
+gem "net-http"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -32,7 +33,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'sqlite3', '~> 1.4'
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug'
 end
 
 group :development do

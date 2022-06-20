@@ -9,9 +9,9 @@
 
 	.chat-send {
 		position: absolute;
-		bottom: -10px;
+		bottom: 20px;
 		padding: 20px;
-		width: calc(75% - 30px);
+		width: calc(100% - 15px);
 		margin-left: -15px;
 		background-color: white;
 		border-top: 1px solid #eeeeee;
@@ -24,6 +24,37 @@
 		.btn {
 			height: 45px;
 		}
+	}
+
+	.message {
+    min-height: 59px;
+    .content-container {
+      display: inline-block;
+      .content {
+        background-color: #eeeeee;
+        padding: 8px 16px;
+        border-radius: 20px;
+      }
+      .author {
+        font-size: 0.8rem;
+        color: #777777;
+        margin-left: 10px;
+      }
+    }
+
+    .my-msg {
+      .content-container {
+        float: right;
+        .content {
+          background-color: #007bff;
+          color: white;
+        }
+      }
+    }
+  }
+
+	.author-info {
+		background-color: grey;
 	}
 }
 

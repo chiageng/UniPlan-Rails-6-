@@ -14,7 +14,7 @@
   <%= form.hidden_field :chat_id, value: chat.id %>
 
   <div class="input-group">
-    <%= form.text_field :content, placeholder: "Type your message here ...", class: 'form-control'%>
+    <%= form.text_field :content, placeholder: "Type your message here ...", class: 'form-control', required: true%>
     <div class="input-group-append">
       <%= form.submit "Send", class: "btn btn-primary" %>
     </div>
