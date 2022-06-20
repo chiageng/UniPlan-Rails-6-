@@ -2,6 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.room-link {
+
+  .room-card {
+    transition: background-color 0.1s;
+    border-radius: 10px;
+    box-shadow: rgba(255,255,255,0.2);
+    text-decoration: none;
+
+    &:hover {
+      background-color: #666666;
+    }
+
+    &.active {
+      background-color: black;
+      .name {
+        color: white;
+      }
+    }
+    .name {
+      font-weight: bold;
+      color: black;
+    }
+ }
+}
+
 .chat-room {
 	background-color: white;
 	height : 100vh;
@@ -17,12 +42,8 @@
 		border-top: 1px solid #eeeeee;
 		input[type=text] {
 			height: 45px;
-			font-size: 18px;
-			padding: 8px;
-		}
-
-		.btn {
-			height: 45px;
+			font-size: 20px;
+			padding: 5px;
 		}
 	}
 
@@ -52,10 +73,13 @@
 
     .my-msg {
       .content-container {
+      display: block;
         float: right;
         .content {
           background-color: #007bff;
           color: white;
+          padding: 8px 16px;
+          border-radius: 20px;
         }
       }
     }

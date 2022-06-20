@@ -1,20 +1,30 @@
 <p id="notice"><%= notice %></p>
 
 <div class="row">
-  <div class="col-3 border-right">
-    <%= render 'form', chat: Chat.new %>
-      <% @chats.each do |chat| %>
-        <%= link_to chat do%>
-        <%= chat.name %>
-        <% if current_user.admin? %>
+  <div class="col-2 border-right room-link">
+    <%= render 'form', chat: Chat.new, required: true%>
+    <% @chats.each do |chat| %>
+    <%= link_to chat do%>
+    <% active_class = (@chat == chat) ? 'active' : '' %>
+    <div class="card no-outline mb-2 room-card <%= active_class %>">
+      <div class="card-body">
+        <div class="col">
+          <span class='name'>
+            <%= chat.name %>
+          </span>
+          <br>
+          <% if current_user.admin? %>
           <td><%= link_to 'Edit', edit_chat_path(chat) %></td>
-          <td><%= link_to 'Destroy', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      <% end %>
+          <td><%= link_to 'Destroy', chat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
     <% end %>
   </div>
   
-  <div class="col-9">
+  <div class="col-10">
     <% if @chat.present? %>
     <div class="chat-room">
       <h2>Chat <%= @chat.id %> : <%= @chat.name %></h2> 
@@ -22,7 +32,7 @@
       <div class="chat-box">
         <div class="message">
           <% @chat.messages.each do |message| %>
-            <%= render 'messages/message', message: message %>
+          <%= render 'messages/message', message: message %>
           <% end %>
         </div>
 
