@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_09_095032) do
+ActiveRecord::Schema.define(version: 2022_06_19_132346) do
 
-  create_table "chats", force: :cascade do |t|
-    t.string "name"
+  create_table "categories", force: :cascade do |t|
+    t.string "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
+
+  create_table "chats", force: :cascade do |t|
+    t.string "name"
 
   create_table "comments", force: :cascade do |t|
     t.text "comment"
@@ -25,6 +28,13 @@ ActiveRecord::Schema.define(version: 2022_06_09_095032) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["forum_id"], name: "index_comments_on_forum_id"
+  end
+
+  create_table "forum_categories", force: :cascade do |t|
+    t.integer "forum_id"
+    t.integer "category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "forums", force: :cascade do |t|
@@ -44,6 +54,15 @@ ActiveRecord::Schema.define(version: 2022_06_09_095032) do
     t.index ["chat_id"], name: "index_messages_on_chat_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
+  
+  create_table "friendships", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "friend_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id"], name: "index_friendships_on_user_id"
+  end
 
   create_table "timetables", force: :cascade do |t|
     t.string "day"
@@ -61,6 +80,19 @@ ActiveRecord::Schema.define(version: 2022_06_09_095032) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.string "priority"
+    t.string "status", default: "Pending"
+    t.string "day"
+    t.datetime "starttime"
+    t.datetime "endtime"
+    t.string "category", default: "To-do"
+  end
+
+  create_table "user_categories", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,9 +102,20 @@ ActiveRecord::Schema.define(version: 2022_06_09_095032) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
     t.boolean "admin", default: false
+    t.string "job"
+    t.string "fullname"
+    t.string "phone"
+    t.string "address"
+    t.string "website"
+    t.string "github"
+    t.string "twitter"
+    t.string "instagram"
+    t.string "facebook"
   end
 
   add_foreign_key "comments", "forums"
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users"
+  add_foreign_key "friendships", "users"
+  add_foreign_key "friendships", "users", column: "friend_id"
 end

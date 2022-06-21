@@ -4,10 +4,16 @@ class TimetablesController < ApplicationController
     before_action :require_same_user, only: [:edit, :update, :destroy]
     
     def index
+        @days = [ "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat", "Sun"]
+        @times = ['8-10am', '10-12pm', '12-2pm', '2-4pm', '4-6pm', '6-8pm','8-10pm']
         if (params.has_key?(:category)) && params[:category] != "All"
-            @works = Timetable.where(category: params[:category])
+            @works = current_user.timetables.where(category: params[:category])
+            if (params[:category] == "To-do")
+                @todo = current_user.todolists.where(status: "In-progress")
+            end 
         else 
-            @works = Timetable.all 
+            @works = current_user.timetables.all 
+            @todo = current_user.todolists.where(status: "In-progress")
         end 
     end 
 
@@ -21,11 +27,25 @@ class TimetablesController < ApplicationController
     def create
         @work = Timetable.new(timetable_params)
         @work.user = current_user
-        if @work.save 
-            flash[:success] = "Work was created successfully"
+        if @work.save && @work.category == "To-do"
+            @todo = Todolist.create(work: @work.work, day: @work.day, starttime: @work.starttime, endtime: @work.endtime, category: "To-do", status: "In-progress", priority: "High")
+            @todo.user = current_user 
+            # @todo.work = @work.work 
+            # @todo.day = @work.day 
+            # @todo.starttime = @work.starttime 
+            # @todo.endtime = @work.endtime 
+            # @todo.category = @work.category
+            # @todo.status = "In-progress"
+            @todo.save 
+            flash[:success] = @todo 
             redirect_to @work
         else 
-            render "new"
+            if @work.save 
+                flash[:success] = "Work was created successfully"
+                redirect_to @work
+            else 
+                render "new"
+            end 
         end 
     end 
 

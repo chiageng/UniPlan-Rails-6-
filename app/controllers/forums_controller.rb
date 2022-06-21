@@ -4,6 +4,14 @@ class ForumsController < ApplicationController
     before_action :require_same_user, only: [:edit, :update, :destroy]
     def index
         @forums = Forum.all 
+        if params.has_key?(:category) && params[:category] != "All"
+            @category = Category.where(category: params[:category]).first
+            @id = @category.id 
+            @forums_id = ForumCategory.where(category_id: @id).map {
+                |relation| relation.forum_id
+            }
+            @forums = Forum.find(@forums_id)
+        end 
     end 
 
     def new 
@@ -17,7 +25,7 @@ class ForumsController < ApplicationController
             flash[:success] = "A new forum is created successfully"
             redirect_to @forum
         else 
-            flash[:danger] = "The creation of forum is failed"
+            flash[:danger] = "Forum create is unsuccessfull"
             render "new"
         end 
     end 
@@ -44,9 +52,20 @@ class ForumsController < ApplicationController
         redirect_to forums_path
     end 
 
+    def search 
+        if params[:forum].present?
+            @forums = Forum.search(params[:forum])
+            render 'forums/index'
+        else 
+            flash[:danger] = "Please enter something to search"
+            redirect_to forums_path
+        end 
+    end 
+
+
     private 
     def forum_params
-        params.require(:forum).permit(:topic, :description)
+        params.require(:forum).permit(:topic, :description,category_ids: [])
     end 
 
     def forum_find 

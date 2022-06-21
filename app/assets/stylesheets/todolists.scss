@@ -108,3 +108,39 @@
 .mb-30 {
   margin-bottom: 30px;
 }
+
+.col-work {
+  margin-left: 0px;
+  margin-top: 10px;
+}
+
+.category .list-title {
+  margin-bottom: -20px;
+}
+
+.registration-form .todolist-icon {
+  text-align: center;
+  background-image: asset-url("todolist-icon2.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  color: white;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  margin-bottom: 50px;
+  line-height: 100px;
+  @media (min-width: 768px) {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.todolist-card {
+  background-color: white;
+}
+
+.inprogress {
+  margin-top: -20px;
+}

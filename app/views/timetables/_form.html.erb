@@ -1,39 +1,55 @@
+<% if work.errors.any? %>
+  <div class="container alert alert-danger alert-dismissible fade show" role="alert">
+    <h4 class="alert-heading">The following errors prevented the forum from being created</h4>
+    <ul>
+      <% work.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>
+
 <%= form_with model: work do |form|%>
-    <div>
-        <%= form.label :Day%><br>
-        <%= form.select :day,
-        [["Monday", "Mon"], ["Tuesday","Tue"], ["Wednesday", "Wed"], ["Thursday", "Thurs"] , ["Friday", "Fri"], ["Saturday", "Sat"], ["Sunday", "Sun"]],
-        selected: "Mon" %><br>
-    </div>
+    <div class="registration-form container-form">
+        <form>
+            <div class="timetable-icon">
+            </div>
+            <div class="form-group">
+                <%= form.text_field :work, class:"form-control item", id:"username", placeholder:"Work"%>
+            </div>
+            <div class="form-group">
+                <%= form.label :Day%><br>
+                <%= form.select :day, options_for_select(
+                [["Monday", "Mon"], ["Tuesday","Tue"], ["Wednesday", "Wed"], ["Thursday", "Thurs"] , ["Friday", "Fri"], ["Saturday", "Sat"], ["Sunday", "Sun"]]), {},  {class:'form-control'} %><br>
+            </div>
 
-    <div>
-        <%= form.label :Category%><br>
-        <%= form.select :category,
-        [["Study", "Study"], ["Work","Work"], ["Social", "Social"], ["To-do", "To-do"] , ["Others", "Others"]],
-        selected: "Study" %><br>
-    </div>
 
-    <div>
-        <%= form.label :work%><br>
-        <%= form.text_field :work%>
-        <% if work.errors.any? %>
-            <% work.errors.full_messages_for(:work).each do |message|%>
-                <div><%= message %></div>
-            <% end %> 
-        <% end %>
-    </div>
+            <div class="form-group">
+                <%= form.label :Category%><br>
+                <%= form.select :category,
+                [["Study", "Study"], ["Work","Work"], ["Social", "Social"], ["To-do", "To-do"] , ["Other", "Other"]], {},  {class:'form-control'}%><br>
+            </div>
 
-    <div>
-        <%= form.label :start%><br>
-        <%= form.time_select :starttime %>
-    </div>
+            <div>
+                <%= form.label :start%><br>
+                <%= form.time_select :starttime, {},  {class:'form-control-time'} %>
+            </div>
 
-    <div>
-        <%= form.label :end%><br>
-        <%= form.time_select :endtime, class: 'datetime' %>
-    </div>
+            <div>
+                <%= form.label :end%><br>
+                <%= form.time_select :endtime, {},  {class:'form-control-time'} %>
+            </div>
 
-    <div>
-        <%= form.submit%>
+            <div class="form-group">
+                <%= form.submit "Create Timetable", class:"btn btn-block create-account"%>
+                <%= link_to "Cancel", timetables_path, class:"text-white btn btn-block create-account" %>
+            </div>
+        </form>
     </div>
 <% end %>
+        
+
+

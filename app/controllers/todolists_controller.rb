@@ -4,13 +4,26 @@ class TodolistsController < ApplicationController
     before_action :require_same_user, only: [:edit, :update, :destroy]
     
     def index
-        @works = Todolist.all 
+        # @works = Todolist.all 
         # if current_user
         #     @works_filter = current_user.todolists
         # end 
+        @works1 = current_user.todolists.where(status: "Pending")
+        @works2 = current_user.todolists.where(status: "In-progress")
+        @works3 = current_user.todolists.where(status: "Done")
     end 
 
     def show 
+        if (params.has_key?(:status))
+            @work.status = params[:status] 
+            @work.save 
+            flash[:success] = "Status of pending work updated"
+            if params[:status] == "In-progress"
+                redirect_to edit_todolist_path(@work)
+            else 
+                redirect_to todolists_path 
+            end 
+        end 
     end 
 
     def new 
@@ -47,7 +60,7 @@ class TodolistsController < ApplicationController
 
     private 
     def todolist_params 
-        params.require(:todolist).permit(:work)
+        params.require(:todolist).permit(:work, :priority, :day, :starttime, :endtime)
     end 
 
     def todolist_find 

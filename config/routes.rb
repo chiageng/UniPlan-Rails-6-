@@ -17,5 +17,11 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  get "search_forum", to: 'forums#search'
+
   resources :timetables 
+
+  resources :categories
+
+  resources :friendships, only: [:create, :destroy]
 end

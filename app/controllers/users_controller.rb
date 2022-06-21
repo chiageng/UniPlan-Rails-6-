@@ -2,7 +2,6 @@ class UsersController < ApplicationController
     before_action :find_user, only: [:show, :edit, :update, :destroy]
     before_action :require_user, only: [:edit, :update, :destroy, :index]
     before_action :require_same_user, only: [:edit, :update, :destroy]
-    before_action :require_admin, only: [:index]
 
     def new 
         @user = User.new 
@@ -33,7 +32,7 @@ class UsersController < ApplicationController
     def update 
         if @user.update(user_params)
             flash[:success] = "Your account has been updated successfully"
-            redirect_to todolists_path
+            redirect_to @user
         else 
             render "new"
         end 
@@ -52,7 +51,7 @@ class UsersController < ApplicationController
 
     private 
     def user_params 
-        params.require(:user).permit(:username, :email, :password)
+        params.require(:user).permit(:username, :email, :password, :job, :fullname, :phone, :address, :website, :github, :twitter, :instagram, :facebook, category_ids:[])
     end 
 
     def find_user

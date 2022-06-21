@@ -1,0 +1,34 @@
+<h1> Here is show page </h1>
+
+<h3> Topic : <%= @forum.topic%> </h3>
+<p> Desciption : <%= @forum.description%> </p>
+<p> Created by : <%= @forum.user.username%> </p>
+
+<h4>Comments</h4>
+<% @forum.comments.each do |comment| %>
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.comment %>
+  </p>
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.user.username %>
+  </p>
+  <% if comment.user == current_user%>
+    <%= link_to "Delete comment", [comment.forum, comment], method: :delete, data: {confirm: "Are you sure? "} %>
+  <% end %>
+
+<% end %>
+
+<%= form_with model: [ @forum, @forum.comments.build ] do |form| %>
+  	<p>
+    		<%= form.label :comment %><br>
+    		<%= form.text_field :comment %>
+  	</p>
+  	<p>
+    		<%= form.submit %>
+  	</p>
+<% end %>
+
+<%= link_to "Edit", edit_forum_path(@forum) %>
+<%= link_to "Home", forums_path%>

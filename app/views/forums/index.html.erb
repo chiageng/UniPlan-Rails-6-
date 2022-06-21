@@ -20,12 +20,10 @@
                                 <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
                                     <div class="simplebar-content" style="padding: 16px;">
                                         <nav class="nav nav-pills nav-gap-y-1 flex-column">
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon active">All Threads</a>
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Popular this week</a>
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Popular all time</a>
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Solved</a>
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">Unsolved</a>
-                                            <a href="javascript:void(0)" class="nav-link nav-link-faded has-icon">No replies yet</a>
+                                            <%= link_to "All", forums_path(category: "All"), class:"nav-link nav-link-faded has-icon"  %>
+                                            <% Category.all.each do |category|%>
+                                                <%= link_to category.category, forums_path(category: category.category), class:"nav-link nav-link-faded has-icon"  %>
+                                            <% end %>
                                         </nav>
                                     </div>
                                 </div>
@@ -46,41 +44,29 @@
             <!-- Inner main header -->
             <div class="inner-main-header">
                 <!-- Inner sidebar header -->
-              <div class="inner-sidebar-header justify-content-center", id= "forum-inner">
-                  <%= link_to "Create New Forum", new_forum_path, class: "btn btn-primary has-icon btn-block"%>
-              </div>
+                <div class="inner-sidebar-header justify-content-center", id= "forum-inner">
+                  <%= link_to "New Forum", new_forum_path, class: "btn btn-primary has-icon btn-block"%>
+                </div>
+                
+                <%= form_tag search_forum_path, method: :get do %>
+                    <div class="input-group">
+                        <%= text_field_tag :forum, params[:forum], placeholder: "Search Forum", autofocus: true, class: "form-control"%>
+                        <div class="input-group-append">
+                        <%= button_tag type: :submit, class: "btn btn-success" do %>
+                            <%= "Search"  %>
+                        <% end %>
+                        </div>
+                    </div>
+                <% end %>
+                
             </div>
+            
             <!-- /Inner main header -->
 
             <!-- Inner main body -->
 
             <!-- Forum List -->
-            <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
-              <% @forums.each do |forum| %>
-                <div class="card mb-2">
-                    <div class="card-body p-2 p-sm-3">
-                        <div class="media forum-item">
-                            <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
-                            <div class="media-body">
-                                <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body"><%= forum.topic%></a></h6>
-                                <p class="text-secondary">
-                                    <%= truncate(forum.description, length:100)%>
-                                </p>
-                                <span class="text-secondary font-weight-bold">Created <%= time_ago_in_words(forum.created_at) %> ago,
-                                edited <%= time_ago_in_words(forum.updated_at) %> ago</span></p>
-                            </div>
-                            <div class="align-self-center">
-                                <%= link_to "Show", forum_path(forum), class:"btn btn-success font-weight-bold"%>
-                                <% if forum.user == current_user || (logged_in? && current_user.admin?) %>
-                                  <%= link_to "Edit", edit_forum_path(forum), class:"btn btn-primary font-weight-bold", id:"phone-hidden"%>
-                                  <%= link_to "Delete", forum_path(forum), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger font-weight-bold", id:"phone-hidden"%>
-                                <% end %>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              <% end %>
-            </div>
+            <%= render 'forum_result'%>
         </div>
     </div>
 </div>
