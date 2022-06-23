@@ -92,7 +92,7 @@
                 <%= form_for(@message, html: {class: "chat-message clearfix", role: "form"}, url: message_path, method: "POST", remote: true) do |form| %>
                     <div class="input-group mb-0">
                         <%= form.text_field :body, class: "form-control", placeholder: "Enter text here..." %>
-                        <div class="input-group-prepend">
+                        <div class="input-group-prepend", id="chat-button">
                             <%= form.button '<i class="fa fa-send"></i>'.html_safe %>
                         </div>                                 
                     </div>
