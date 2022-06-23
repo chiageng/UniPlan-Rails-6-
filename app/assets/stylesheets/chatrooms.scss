@@ -81,6 +81,8 @@
 .chat .chat-history {
   padding: 20px;
   border-bottom: 2px solid #fff;
+  height: 500px;
+  overflow: auto;
 }
 
 .chat .chat-history ul {
@@ -201,11 +203,10 @@
 
 @media only screen and (max-width: 767px) {
   .chat-app .people-list {
-    height: 465px;
+    height: 200px;
     width: 100%;
     overflow-x: auto;
     background: #fff;
-    left: -400px;
     display: none;
   }
   .chat-app .people-list.open {
@@ -218,7 +219,7 @@
     border-radius: 0.55rem 0.55rem 0 0;
   }
   .chat-app .chat-history {
-    height: 300px;
+    height: 500px;
     overflow-x: auto;
   }
 }
@@ -229,7 +230,7 @@
     overflow-x: auto;
   }
   .chat-app .chat-history {
-    height: 600px;
+    height: 500px;
     overflow-x: auto;
   }
 }

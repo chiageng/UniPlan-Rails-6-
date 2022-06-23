@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="chat-history">
+                <div class="chat-history", id="message-container">
                     <ul class="m-b-0">
                         <%= render @messages%>
                                                    
@@ -89,7 +89,7 @@
                     </ul>
                 </div>
 
-                <%= form_for(@message, html: {class: "chat-message clearfix", role: "form"}, url: message_path) do |form| %>
+                <%= form_for(@message, html: {class: "chat-message clearfix", role: "form"}, url: message_path, method: "POST", remote: true) do |form| %>
                     <div class="input-group mb-0">
                         <%= form.text_field :body, class: "form-control", placeholder: "Enter text here..." %>
                         <div class="input-group-prepend">
