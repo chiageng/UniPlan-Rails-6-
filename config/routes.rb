@@ -22,4 +22,7 @@ Rails.application.routes.draw do
   resources :categories
 
   resources :friendships, only: [:create, :destroy]
+
+  get 'chatrooms', to: 'chatrooms#index'
+  post 'message', to: 'messages#create'
 end
