@@ -1,9 +1,10 @@
 <li class="clearfix">
-    <div class="message-data text-right">
+    <div class="message-data cont-<%= message.user_id %>">
         <span class="message-data-time">10:10 AM, Today</span>
-        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar">
     </div>
-    <div class="message other-message float-right"> 
+    <div class="message other-message msg-<%= message.user_id %>"> 
         <%= message.user.username%> : <%= message.body %> 
     </div>
 </li>
+    
+    
