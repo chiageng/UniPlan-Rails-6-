@@ -1,5 +1,19 @@
 class MessagesController < ApplicationController
     before_action :require_user 
+
+    def index
+      @messages = Message.all
+    end
+
+    def show
+    end
+
+    def new
+     @message = Message.new
+    end
+
+    def edit
+    end
     
     def create 
         @chatroom = Chatroom.find(params[:chatroom_id])
@@ -12,11 +26,15 @@ class MessagesController < ApplicationController
     end 
 
     private 
-    def message_params
-        params.require(:message).permit(:body)
-    end 
+        def message_params
+            params.require(:message).permit(:body)
+        end 
 
-    def message_render(message)
-        render(partial: 'message', locals: {message: message})
-    end 
+        def message_render(message)
+            render(partial: 'message', locals: {message: message})
+        end 
+
+        def set_message
+          @message = Message.find(params[:id])
+        end
 end

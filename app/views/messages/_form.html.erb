@@ -1,0 +1,8 @@
+<%= form_for([@chatroom, @chatroom.messages.build], url: chatroom_messages_path(@chatroom), remote: true, class: "chat-message clearfix", method: "POST") do |form|%>
+                    <div class="input-group mb-0">
+                        <%= form.text_field :body, class: "form-control", placeholder: "Enter text here..." %>
+                        <div class="input-group-prepend">
+                            <%= form.button '<i class="fa fa-send"></i>'.html_safe, id:"chat-button" %>
+                        </div>                                 
+                    </div>
+                <% end %>

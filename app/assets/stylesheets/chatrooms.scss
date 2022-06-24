@@ -2,6 +2,99 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+// Place all the styles related to the Chats controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.chatroom-link {
+
+  .chatroom-card {
+    transition: background-color 0.1s;
+    border-radius: 15px;
+    box-shadow: rgba(255,255,255,0.2);
+    text-decoration: none;
+
+    &:hover {
+      background-color: #666666;
+    }
+
+    &.active {
+      background-color: black;
+      .name {
+        color: white;
+      }
+    }
+    .name {
+      font-weight: bold;
+      color: black;
+    }
+ }
+}
+
+.chatroom-room {
+  background-color: #c2c8d0;
+  height : 87vh;
+  overflow-y: hidden;
+
+  .chatroom-send {
+    position: absolute;
+    bottom: 0px;
+    padding: 20px;
+    width: calc(100% - 15px);
+    margin-left: -15px;
+    background-color: white;
+    border-top: 1px solid #eeeeee;
+    input[type=text] {
+      height: 45px;
+      font-size: 20px;
+      padding: 5px;
+    }
+  }
+
+  .chatroom-box {
+      height: 100%;
+      overflow-y: auto;
+      padding-bottom: 100px;
+      padding-top: 20px;
+      padding-right: 50px;
+      
+    }
+
+  .message {
+    min-height: 50px;
+    .content-container {
+      display: inline-block;
+      .content {
+        background-color: #eeeeee;
+        padding: 8px 16px;
+        border-radius: 20px;
+      }
+      .author {
+        font-size: 0.8rem;
+        color: #777777;
+        margin-left: 10px;
+      }
+    }
+
+    .my-msg {
+      .content-container {
+      display: block;
+        float: right;
+        .content {
+          background-color: #007bff;
+          color: white;
+          padding: 8px 16px;
+          border-radius: 20px;
+        }
+      }
+    }
+  }
+}
+
+.border-right {
+  border-right: 1px solid black;
+}
+
 .chat-app .people-list {
   width: 280px;
   position: absolute;

@@ -1,3 +1,56 @@
-<%= render @chatrooms %>
+<div id="chatroom-id" data-chatroom-id="<%= @chatroom.try(:id) %>"></div>
+<div id="user-id" data-user-id="<%= current_user.id %>"></div>
 
-<%= link_to "New", new_chatroom_path%>
+<div class="row">
+	<div class="col-2 border-right chatroom-link">
+		<br>
+		<%= link_to "Create Chatroom", new_chatroom_path, class:"btn btn-block btn-primary"%>
+		<br>
+		<% Chatroom.all.each do |chatroom| %>
+		<%= link_to chatroom do%>
+		<% active_class = (@chatroom == chatroom) ? 'active' : '' %>
+		<div class="card no-outline mb-2 chatroom-card <%= active_class %>">
+			<div class="card-body">
+				<div class="col">
+					<span class='name'>
+						<%= chatroom.name %>
+					</span>
+					<br>
+					<% if current_user.admin? %>
+					<td><%= link_to 'Edit', edit_chatroom_path(chatroom) %></td>
+					<td><%= link_to 'Destroy', chatroom, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					<% end %>
+				</div>
+			</div>
+		</div>
+		<% end %>
+		<% end %>
+	</div>
+
+	<div class="col-10">
+		<% if @chatroom.present? %>
+		<div class="chatroom-room">
+			<h2> Chatroom <%= @chatroom.id %> : <%= @chatroom.name %></h2> 
+			<hr>
+			<div class="chatroom-box">
+				<div class="message">
+					<ul class="m-b-0", id="message-container-<%=@chatroom.id %>">
+						<%= render @messages%>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+
+		<%= form_for([@chatroom, @chatroom.messages.build], url: chatroom_messages_path(@chatroom), remote: true, class: "chat-message clearfix", method: "POST") do |form|%>
+		<div class="input-group">
+			<%= form.text_field :body, class: "form-control", placeholder: "Enter text here..." %>
+			<div class="chat-send">
+				<%= form.button '<i class="fa fa-send"></i>'.html_safe, id:"chat-button" %>
+			</div>                                 
+		</div>
+		<% end %>
+		
+		<% end %>
+	</div>
+</div>
