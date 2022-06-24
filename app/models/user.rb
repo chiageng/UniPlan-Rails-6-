@@ -16,6 +16,8 @@ class User < ApplicationRecord
 
     has_secure_password
 
+    scope :all_except, ->(user) {where.not(id: user)}
+
     def except_current_user(users)
         users.reject {|user| user_id == self.id } 
       end 
