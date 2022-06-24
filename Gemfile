@@ -22,6 +22,8 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
 gem "net-http"
 
 # Use Active Storage variant
@@ -41,7 +43,7 @@ group :development do
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem 'rack-mini-profiler', '~> 2.0'
+  # gem 'rack-mini-profiler', '~> 2.0'
 end
 
 group :test do
@@ -59,3 +61,5 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data'
 gem 'net-smtp'
+
+gem "turbo-rails", "~> 1.1"

@@ -24,15 +24,9 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.user = current_user
 
-    respond_to do |format|
-      if @message.save
-        format.html { redirect_to request.referrer }
-        format.json { render :show, status: :created, location: @message }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @message.errors, status: :unprocessable_entity }
-      end
-    end
+    @message.save
+    SendMessageJob.perform_later(@message)
+    
   end
 
   # PATCH/PUT /messages/1 or /messages/1.json

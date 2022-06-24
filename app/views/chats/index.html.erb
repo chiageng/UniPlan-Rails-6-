@@ -1,12 +1,15 @@
+<div id="chat-id" data-chat-id="<%= @chat.try(:id) %>"></div>
+<div id="user-id" data-user-id="<%= current_user.id %>"></div>
+
 <p id="notice"><%= notice %></p>
 
 <div class="row">
-  <div class="col-2 border-right room-link">
+  <div class="col-2 border-right chat-link">
     <%= render 'form', chat: Chat.new, required: true%>
     <% @chats.each do |chat| %>
     <%= link_to chat do%>
     <% active_class = (@chat == chat) ? 'active' : '' %>
-    <div class="card no-outline mb-2 room-card <%= active_class %>">
+    <div class="card no-outline mb-2 chat-card <%= active_class %>">
       <div class="card-body">
         <div class="col">
           <span class='name'>
@@ -27,7 +30,7 @@
   <div class="col-10">
     <% if @chat.present? %>
     <div class="chat-room">
-      <h2>Chat <%= @chat.id %> : <%= @chat.name %></h2> 
+      <h2> Chat <%= @chat.id %> : <%= @chat.name %></h2> 
       <hr>
       <div class="chat-box">
         <div class="message">
