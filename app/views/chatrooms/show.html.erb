@@ -77,11 +77,12 @@
                     </div>
                 </div>
                 <div class="chat-history", id="message-container">
-                    <ul class="m-b-0">
+                    <ul class="m-b-0", id="message-container-<%=@chatroom.id %>">
                         <%= render @messages%>
                                                    
                     </ul>
-                </div>
+                    </div>
+
                 
                 <%= form_for([@chatroom, @chatroom.messages.build], url: chatroom_messages_path(@chatroom), remote: true, class: "chat-message clearfix", method: "POST") do |form|%>
                     <div class="input-group mb-0">

@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
         @message.user = current_user 
         if @message.save 
             # redirect_to @chatroom
-            ActionCable.server.broadcast "chatroom_channel", mod_message: message_render(@message)
+            ActionCable.server.broadcast "chatroom_channel", mod_message: message_render(@message), id: @chatroom.id
         end 
     end 
 
