@@ -4,6 +4,7 @@ class ForumsController < ApplicationController
     before_action :require_same_user, only: [:edit, :update, :destroy]
     def index
         @forums = Forum.all 
+        @relations = ForumCategory.all 
         if params.has_key?(:category) && params[:category] != "All"
             @category = Category.where(category: params[:category]).first
             @id = @category.id 
