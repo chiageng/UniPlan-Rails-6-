@@ -4,9 +4,9 @@ class User < ApplicationRecord
     has_many :forums, dependent: :destroy
     has_many :comments, dependent: :destroy
     has_many :timetables, dependent: :destroy
-    has_many :friendships
+    has_many :friendships, dependent: :destroy
     has_many :friends, through: :friendships
-    has_many :user_categories 
+    has_many :user_categories, dependent: :destroy 
     has_many :categories, through: :user_categories
     has_many :messages, dependent: :destroy
 
