@@ -38,8 +38,16 @@
                                 <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar">
                             </a>
                             <div class="chat-about">
-                                <h6 class="m-b-0">Aiden Chavez</h6>
-                                <small>Last seen: 2 hours ago</small>
+                                <h6 class="m-b-0">
+                                    <% if @chatroom.name %>
+                                        <%= @chatroom.name.capitalize %>
+                                    <% else %>
+                                        <%= chatroom_name(@chatroom, current_user)%>
+                                    <% end %>
+                                </h6>
+                                <% if @chatroom.status =="group" %>
+                                <small>Participants : <%= @chatroom.users.map{|relation| relation.username} %></small>
+                                <% end %>
                             </div>
                         </div>
                         <div class="col-lg-6 hidden-sm text-right">

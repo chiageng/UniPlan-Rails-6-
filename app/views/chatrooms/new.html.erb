@@ -22,6 +22,10 @@
             </div>
 
             <div class="form-group">
+              <%= form.collection_select :user_ids, Friendship.where(user_id: current_user.id).map{|relation| relation.friend}, :id, :username, {prompt: "Make your selection of friends"}, {multiple: true, class: "custom-select"} %>
+            </div>
+            
+            <div class="form-group">
                 <%= form.submit "Create Chatroom", class:"btn btn-block create-account"%>
                 <%= link_to "Cancel", chatrooms_path, class:"text-white btn btn-block create-account" %>
             </div>

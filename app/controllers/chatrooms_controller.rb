@@ -19,7 +19,9 @@ class ChatroomsController < ApplicationController
 
     def create 
         @chatroom = Chatroom.new(chatroom_params)
+        @chatroom.status = "group"
         if @chatroom.save 
+            @chatroom.users << current_user 
             flash[:success] = "A new chatroom is created successfully"
             redirect_to @chatroom
         else 
@@ -30,7 +32,7 @@ class ChatroomsController < ApplicationController
 
     private
     def chatroom_params
-        params.require(:chatroom).permit(:name)
+        params.require(:chatroom).permit(:name, user_ids:[])
     end
 
     def all_chatrooms 
