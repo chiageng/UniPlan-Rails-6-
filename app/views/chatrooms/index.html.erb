@@ -8,13 +8,19 @@
                 <div class="input-group">
                     <%= link_to "Create Chatroom", new_chatroom_path, class:"btn btn-block btn-primary"%>
                 </div>
-                <% Chatroom.all.each do |chatroom| %>
+                <% @chatrooms.each do |chatroom| %>
                 <ul class="list-unstyled chat-list mt-2 mb-0">
                     <%= link_to chatroom do %>
                     <% active_class = (@chatroom == chatroom) ? "active" : ""%>
                     <li class="clearfix <%= active_class %>">
                         <div class="about">
-                            <div class="name link-black"><%= chatroom.name.capitalize %></div>
+                            <div class="name link-black">
+                            <% if chatroom.name %>
+                                <%= chatroom.name.capitalize %>
+                            <% else %>
+                                <%= chatroom_name(chatroom, current_user)%>
+                            <% end %>
+                            </div>
                             <div class="status"> <i class="fa fa-circle online"></i> active </div>
                         </div>
                     </li>

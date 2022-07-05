@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_24_035544) do
+ActiveRecord::Schema.define(version: 2022_07_05_073729) do
 
   create_table "categories", force: :cascade do |t|
     t.string "category"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2022_06_24_035544) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status", default: "private"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -94,6 +95,14 @@ ActiveRecord::Schema.define(version: 2022_06_24_035544) do
     t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_chatrooms", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "chatroom_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
   end
 
   create_table "users", force: :cascade do |t|

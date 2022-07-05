@@ -19,7 +19,7 @@
                       <% else %>
                         <%= link_to "Remove Friend", friendship_path(@user), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger font-weight-bold"%>
                       <% end %>
-                      <button class="btn btn-outline-primary">Message</button>
+                      <%= link_to "Message", current_user.check_private_chatroom_exist(@user), class: "btn btn-outline-primary"%>
                       <% end %>
                     </div>
                   </div>

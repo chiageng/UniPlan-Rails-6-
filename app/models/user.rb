@@ -9,6 +9,8 @@ class User < ApplicationRecord
     has_many :user_categories, dependent: :destroy 
     has_many :categories, through: :user_categories
     has_many :messages, dependent: :destroy
+    has_many :user_chatrooms, dependent: :destroy  
+    has_many :chatrooms, through: :user_chatrooms
 
     validates :username, presence: true, uniqueness: {case_sensitive: false}
 	VALID_EMAIL_REGEX = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
@@ -24,5 +26,30 @@ class User < ApplicationRecord
     
     def not_friend_with(friend_id)
         !self.friends.where(id: friend_id).exists?
+    end 
+
+    def create_private_chatroom(user)
+        chatroom = Chatroom.new 
+        chatroom.save 
+        chatroom.users << self
+        chatroom.users << user
+        return chatroom 
+    end 
+
+    def check_private_chatroom_exist(user)
+        relations = self.chatrooms
+        chatroom = nil 
+        relations.each do |relation|
+            if relation.status == "private" && relation.users.where(id: user.id).first
+                chatroom = relation 
+            end 
+        end 
+        
+
+        if chatroom
+            return chatroom 
+        else 
+            self.create_private_chatroom(user)
+        end 
     end 
 end
