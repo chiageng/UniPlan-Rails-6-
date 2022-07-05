@@ -3,7 +3,7 @@
       
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title font-weight-bold"><%= @work.work.capitalize %></h5>
+        <h5 class="card-title font-weight-bold"><%= @work.day %></h5>
         <p class="card-text">
             <%= @work.status%>
         </p>
@@ -12,7 +12,7 @@
             edited <%= time_ago_in_words(@work.updated_at) %> ago
         </p>
         <div class="d-flex justify-content-between">
-          <p class="display-1 degree"><%= @work.day %></p>
+          <p class="display-3 degree"><%= @work.work.capitalize %></p>
           <i class="fas fa-sun-o fa-5x pt-3 text-warning"></i>
         </div>
         <% if @work.starttime %>
@@ -26,8 +26,13 @@
         <a class="btn btn-link link-info p-md-1 my-1" data-mdb-toggle="collapse" href="#collapseContent1"
           role="button" aria-expanded="false" aria-controls="collapseContent1">
             <%= link_to "Home", todolists_path, class:"btn btn-primary font-weight-bold"%>
-            <%= link_to "Edit", edit_todolist_path(@work), class:"btn btn-success font-weight-bold" %>
-            <%= link_to "Delete", @work, method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger font-weight-bold"%>
+            <%= link_to "Edit", edit_todolist_path(@work), class:"btn btn-info font-weight-bold" %>
+
+            <% if @work.status == "In-progress"%>
+              <%= link_to "Done", todolist_path(@work, status: "Done"), class:"btn btn-success font-weight-bold"%>
+            <% else %>
+              <%= link_to "Delete", @work, method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger font-weight-bold"%>
+            <% end %>
           </a>
       </div>
     </div>
