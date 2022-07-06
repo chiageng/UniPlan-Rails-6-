@@ -1,17 +1,40 @@
 <div class="container">
-    <div class="inner-main-header">
+    <% if @works.count == 0 %>
+        <div class="container-fluid  mt-100">
+			<div class="row">
+			    <div class="col-md-12 mt-5">
+					<div class="card">
+						<div class="card-body empty-work">
+							<div class="col-sm-12 empty-cart-cls text-center">
+								<img src="https://img.freepik.com/free-vector/flat-style-work-deadline-concept-reminder-list-icon_610956-131.jpg?w=2000" width="130" height="200" class="img-fluid mb-4 mr-3">
+									<h3><strong>Your To-do-list is Empty</strong></h3>
+									<h4>Add some works to to start your journey :) </h4>
+                                    <%= link_to "Create New Task", new_todolist_path, class:"navbar-brand font-weight-bold font-black btn btn-primary cart-btn-transform m-3" %>
+									
+								
+							</div>
+						</div>
+				    </div>
+						
+					
+				</div>
+				 
+			</div>
+				
+		</div>
+    <% else %>
+        <div class="inner-main-header">
                 <!-- Inner sidebar header -->
             <div class="inner-sidebar-header justify-content-center">
                 <%= link_to "Create New Task", new_todolist_path, class:"navbar-brand font-weight-bold font-black" %>
             </div>
-    </div>
-    
-    
-    <%= render 'tobegin'%>
+        </div>
+        <%= render 'tobegin'%>
 
-    <%= render 'inprogress'%>
+        <%= render 'inprogress'%>
 
-    <%= render 'done'%>
+        <%= render 'done'%>
+    <% end %>
       
 </div>
 

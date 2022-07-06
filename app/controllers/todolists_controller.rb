@@ -8,6 +8,7 @@ class TodolistsController < ApplicationController
         # if current_user
         #     @works_filter = current_user.todolists
         # end 
+        @works = current_user.todolists 
         @works1 = current_user.todolists.where(status: "Pending")
         @works2 = current_user.todolists.where(status: "In-progress")
         @works3 = current_user.todolists.where(status: "Done")
