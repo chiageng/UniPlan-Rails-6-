@@ -37,8 +37,9 @@ class TimetablesController < ApplicationController
             # @todo.category = @work.category
             # @todo.status = "In-progress"
             @todo.save 
+            @work.destroy 
             flash[:success] = @todo 
-            redirect_to @work
+            redirect_to @todo 
         else 
             if @work.save 
                 flash[:success] = "Work was created successfully"

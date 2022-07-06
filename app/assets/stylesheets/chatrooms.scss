@@ -252,6 +252,10 @@
 }
 
 .chat-app .people-list {
-  overflow-x: auto;
+  overflow: auto;
   background: #fff;
+  height: 200px;
+  @media (min-width: 768px) {
+    height: 480px;
+  }
 }
