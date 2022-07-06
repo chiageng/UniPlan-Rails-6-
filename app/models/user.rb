@@ -52,4 +52,23 @@ class User < ApplicationRecord
             self.create_private_chatroom(user)
         end 
     end 
+
+    def self.matches(field_name, param)
+        where("#{field_name} like?", "%#{param}%")
+    end 
+
+    def self.username_matches(param)
+        matches("username", param)
+    end 
+
+    def self.email_matches(param)
+        matches("email", param)
+    end 
+
+    def self.search(param)
+        param.strip!
+        to_send_back = (username_matches(param) + email_matches(param)).uniq
+        return nil unless to_send_back
+        to_send_back 
+    end 
 end

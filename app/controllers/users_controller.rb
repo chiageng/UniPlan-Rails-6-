@@ -49,6 +49,16 @@ class UsersController < ApplicationController
         end 
     end 
 
+    def search 
+        if params[:user].present?
+            @users = User.search(params[:user])
+            render 'users/index'
+        else 
+            flash[:danger] = "Please enter something to search"
+            redirect_to users_path
+        end 
+    end 
+
     private 
     def user_params 
         params.require(:user).permit(:username, :email, :password, :job, :fullname, :phone, :address, :website, :github, :twitter, :instagram, :facebook, category_ids:[])

@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   get "search_forum", to: 'forums#search'
 
+  get "search_user", to: 'users#search'
+
   resources :timetables 
 
   resources :categories
