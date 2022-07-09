@@ -14,7 +14,7 @@ class CategoriesController < ApplicationController
             redirect_to categories_path
         else 
             flash[:danger] = "Something wrong with the creation"
-            redirect_to categories_path
+            render "new"
         end 
     end 
 
