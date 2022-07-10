@@ -3,39 +3,48 @@ require "application_system_test_case"
 class ForumsTest < ApplicationSystemTestCase
   setup do
     @forum = forums(:one)
+    @admin_user = User.create(username: "123", email: "123@example.com", password: "123", admin: true)
+    @forum = Forum.create(topic: "test", description: "test", user: @admin_user)
+    login(@admin_user)
   end
 
   test "visiting the index" do
     visit forums_url
-    assert_selector "h1", text: "Forums"
+    assert_selector "a", text: "Create New Forum"
   end
 
   test "creating a Forum" do
     visit forums_url
-    click_on "New Forum"
+    click_on "Create New Forum"
+
+    fill_in "Forum Topic", with: "Testing"
+    fill_in "Forum Description", with: "Testing"
 
     click_on "Create Forum"
 
-    assert_text "Forum was successfully created"
-    click_on "Back"
+    assert_text "A new forum is created successfully"
+    assert_selector "h5", text: "Testing"
   end
 
-  test "updating a Forum" do
-    visit forums_url
-    click_on "Edit", match: :first
+  # test "updating a Forum" do
+  #   visit forums_url
+  #   click_on "Edit", match: :first
 
-    click_on "Update Forum"
+  #   fill_in "Forum Topic", with: "Testing-edited"
+  #   fill_in "Forum Description", with: "Testing-edited"
 
-    assert_text "Forum was successfully updated"
-    click_on "Back"
-  end
+  #   click_on "Create Forum"
+
+  #   assert_text "Your forum has been updated successfully"
+  #   assert_selector "h5", text: "Testing-edited"
+  # end
 
   test "destroying a Forum" do
     visit forums_url
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      click_on "Delete", match: :first
     end
 
-    assert_text "Forum was successfully destroyed"
+    assert_text "Your forum has been deleted successfully"
   end
 end

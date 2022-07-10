@@ -13,4 +13,12 @@ class ActiveSupport::TestCase
   def sign_in_as(user)
     post login_path, params: { session: {email: user.email, password: user.username} }
   end 
+
+  def login(user)
+    visit login_path 
+    fill_in "email@example.com", with: user.email 
+    fill_in "password", with: user.username 
+
+    click_on "Log In"
+  end 
 end

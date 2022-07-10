@@ -3,6 +3,7 @@
 one:
   username: MyString
   email: MyString
+  admin: true
 
 two:
   username: MyString
