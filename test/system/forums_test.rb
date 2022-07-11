@@ -2,7 +2,6 @@ require "application_system_test_case"
 
 class ForumsTest < ApplicationSystemTestCase
   setup do
-    @forum = forums(:one)
     @admin_user = User.create(username: "123", email: "123@example.com", password: "123", admin: true)
     @forum = Forum.create(topic: "test", description: "test", user: @admin_user)
     login(@admin_user)
@@ -26,18 +25,18 @@ class ForumsTest < ApplicationSystemTestCase
     assert_selector "h5", text: "Testing"
   end
 
-  # test "updating a Forum" do
-  #   visit forums_url
-  #   click_on "Edit", match: :first
+  test "updating a Forum" do
+    visit forums_url
+    click_on "Edit", match: :first
 
-  #   fill_in "Forum Topic", with: "Testing-edited"
-  #   fill_in "Forum Description", with: "Testing-edited"
+    fill_in "Forum Topic", with: "Testing-edited"
+    fill_in "Forum Description", with: "Testing-edited"
 
-  #   click_on "Create Forum"
+    click_on "Create Forum"
 
-  #   assert_text "Your forum has been updated successfully"
-  #   assert_selector "h5", text: "Testing-edited"
-  # end
+    assert_text "Your forum has been updated successfully"
+    assert_selector "h5", text: "Testing-edited"
+  end
 
   test "destroying a Forum" do
     visit forums_url

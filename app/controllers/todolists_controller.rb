@@ -56,6 +56,7 @@ class TodolistsController < ApplicationController
 
     def destroy
         @work.destroy
+        flash[:danger] = "Your work has been deleted successfully"
         redirect_to todolists_path
     end 
 

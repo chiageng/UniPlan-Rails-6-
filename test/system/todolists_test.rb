@@ -2,40 +2,48 @@ require "application_system_test_case"
 
 class TodolistsTest < ApplicationSystemTestCase
   setup do
-    @todolist = todolists(:one)
+    @admin_user = User.create(username: "123", email: "123@example.com", password: "123", admin: true)
+    @todolist = Todolist.create(work: "test", user: @admin_user)
+    login(@admin_user)
   end
 
   test "visiting the index" do
     visit todolists_url
-    assert_selector "h1", text: "Todolists"
+    assert_selector "a", text: "Create New Task"
   end
 
   test "creating a Todolist" do
     visit todolists_url
-    click_on "New Todolist"
+    click_on "Create New Task"
 
-    click_on "Create Todolist"
+    fill_in "Work", with: "New task"
 
-    assert_text "Todolist was successfully created"
-    click_on "Back"
+    click_on "Create Task"
+
+    assert_text "Work was created successfully"
+    click_on "Home"
   end
 
   test "updating a Todolist" do
     visit todolists_url
     click_on "Edit", match: :first
 
-    click_on "Update Todolist"
+    fill_in "Work", with: "Edited"
 
-    assert_text "Todolist was successfully updated"
-    click_on "Back"
+    click_on "Create Task"
+
+    assert_text "Your work is updated successfully"
+    click_on "Home"
+
   end
 
   test "destroying a Todolist" do
     visit todolists_url
+    click_on "Show", match: :first
     page.accept_confirm do
-      click_on "Destroy", match: :first
+      click_on "Delete", match: :first
     end
 
-    assert_text "Todolist was successfully destroyed"
+    assert_text "Your work has been deleted successfully"
   end
 end
