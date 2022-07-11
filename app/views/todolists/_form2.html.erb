@@ -29,6 +29,29 @@
                 </div>
             </div>
 
+              <div>
+                  <%= form.label :status%><br>
+                  <%= form.select :status,
+                  [["Pending", "Pending"], ["In-progress","In-progress"], ["Done", "Done"]], {selected: "In-progress"},  {class:'form-control'} %><br>
+              </div>
+
+              <div>
+                <%= form.label :Day%><br>
+                <%= form.select :day,
+                [["Monday", "Mon"], ["Tuesday","Tue"], ["Wednesday", "Wed"], ["Thursday", "Thurs"] , ["Friday", "Fri"], ["Saturday", "Sat"], ["Sunday", "Sun"]], {},  {class:'form-control'} %><br>
+              </div>
+              
+              <div>
+                  <%= form.label :start%><br>
+                  <%= form.time_select :starttime, {},  {class:'form-control-time'} %>
+              </div>
+
+              <div>
+                  <%= form.label :end%><br>
+                  <%= form.time_select :endtime, {},  {class:'form-control-time'} %>
+              </div>
+          
+            
               <div class="form-group">
                   <%= form.submit "Create Task", class:"btn btn-block create-account"%>
                   <%= link_to "Cancel", todolists_path, class:"text-white btn btn-block create-account" %>
@@ -36,7 +59,3 @@
         </form>
     </div>
 <% end %>
-        
-
-
-
