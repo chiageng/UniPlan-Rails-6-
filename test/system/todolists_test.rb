@@ -22,6 +22,8 @@ class TodolistsTest < ApplicationSystemTestCase
 
     assert_text "Work was created successfully"
     click_on "Home"
+
+    assert_selector "h5", text: "New task"
   end
 
   test "updating a Todolist" do
@@ -34,6 +36,38 @@ class TodolistsTest < ApplicationSystemTestCase
 
     assert_text "Your work is updated successfully"
     click_on "Home"
+  end
+
+  test "in-progress a Todolist" do
+    visit todolists_url
+    click_on "In-progress", match: :first
+
+    click_on "Create Task"
+
+    assert_text "Your work is updated successfully"
+    click_on "Home"
+    assert_selector "h4", text: "In-progress"
+
+    visit timetables_url
+    assert_selector "a", text: "Test"
+  end
+
+  test "done a Todolist" do
+    visit todolists_url
+
+    click_on "In-progress", match: :first
+
+    click_on "Create Task"
+
+    assert_text "Your work is updated successfully"
+    click_on "Home"
+    assert_selector "h4", text: "In-progress"
+
+    click_on "Done", match: :first
+
+    assert_text "Status of work updated"
+
+    assert_selector "h4", text: "Done"
 
   end
 

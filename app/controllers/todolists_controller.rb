@@ -21,7 +21,7 @@ class TodolistsController < ApplicationController
             else 
                 @work.status = params[:status]
                 @work.save
-                flash[:sucess] = "Status of work updated"
+                flash[:success] = "Status of work updated"
                 redirect_to todolists_path 
             end 
         end 
