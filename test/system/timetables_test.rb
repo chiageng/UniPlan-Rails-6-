@@ -28,7 +28,6 @@ class TimetablesTest < ApplicationSystemTestCase
     assert_text "Work was created successfully"
     click_on "Home"
 
-    assert_selector "a", "New work"
   end
 
   test "updating a Timetable" do
@@ -43,7 +42,6 @@ class TimetablesTest < ApplicationSystemTestCase
     assert_text "Your work is updated successfully"
     click_on "Home"
 
-    assert_selector "a", "New work"
   end
 
   test "destroying a Timetable" do

@@ -19,7 +19,7 @@ class ChatroomsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create chatroom" do
     assert_difference('Chatroom.count') do
-      post chatrooms_url, params: { chatroom: { name: "test", user: @user } }
+      post chatrooms_url, params: { chatroom: { name: "test"} }
     end
 
     assert_redirected_to chatroom_url(Chatroom.last)
