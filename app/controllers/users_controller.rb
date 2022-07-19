@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :find_user, only: [:show, :edit, :update, :destroy]
-    before_action :require_user, only: [:edit, :update, :destroy, :index]
+    before_action :require_user, only: [:edit, :update, :destroy, :index, :friends]
     before_action :require_same_user, only: [:edit, :update, :destroy]
 
     def new 
@@ -20,6 +20,10 @@ class UsersController < ApplicationController
 
     def index 
         @users = User.all
+    end 
+
+    def friends
+        @users = current_user.friends
     end 
 
     def show 

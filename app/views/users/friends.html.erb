@@ -1,0 +1,52 @@
+<div class="container mt-4" >
+    <div class="padding">
+        <div class="row container d-flex justify-content-center">
+
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Friends Page</h4>
+
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Created On</th>
+                          <th>Command</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <% @users.each do |user| %>
+                        <tr>
+                          <td><%= user.username %></td>
+                          <td><%= user.email %></td>
+                          <td>Created <%= time_ago_in_words(user.created_at) %> ago</td>
+                          <td>
+                            <%= link_to "Message", current_user.check_private_chatroom_exist(user), class: "btn btn-outline-primary"%>
+
+                            <% if current_user == user || current_user.admin?%>
+                              <%= link_to "Edit", edit_user_path(user), class:"btn btn-primary font-weight-bold"%>
+                              <%= link_to "Delete", user, method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger font-weight-bold"%>
+                            <% else %>
+                              <% if current_user.not_friend_with(user) %>
+                              <%= link_to "Add Friend", friendships_path(friend: user), method: :post, class:"btn btn-primary font-weight-bold"%>
+                              <% else %>
+                              <%= link_to "Remove Friend", friendship_path(user), method: :delete, data: {confirm: "Are you sure?"}, class:"btn btn-danger font-weight-bold"%>
+                              <% end %>
+                            <% end %>
+                          </td>
+                        </tr>
+                      <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+    </div>
+  </div>
+</div>
+

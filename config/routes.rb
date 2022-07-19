@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   get "search_user", to: 'users#search'
 
+  get "friends", to: "users#friends"
+
   resources :timetables 
 
   resources :categories
