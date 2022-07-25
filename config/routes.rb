@@ -23,6 +23,12 @@ Rails.application.routes.draw do
 
   resources :friendships, only: [:create, :destroy]
 
-  get 'chatrooms', to: 'chatrooms#index'
-  post 'message', to: 'messages#create'
+  # get 'chatrooms', to: 'chatrooms#index'
+  resources :chatrooms do 
+    resources :messages, only: [:create]
+  end 
+
+  # post 'message', to: 'messages#create'
+
+  mount ActionCable.server, at: '/cable' 
 end
